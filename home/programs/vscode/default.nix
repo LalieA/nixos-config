@@ -1,8 +1,30 @@
-{ config, pkgs, home-manager, nix-vscode-extensions, ... }:
+{ config, pkgs, lib, home-manager, nix-vscode-extensions, ... }:
+let
+    cfg = config.programs.vscode;
 
+    userSettingsPath = "${config.home.homeDirectory}/.config/Code/User";
+    configFilePath = "${userSettingsPath}/settings.json";
+    # tasksFilePath = "${userSettingsPath}/tasks.json";
+    # keybindingsFilePath = "${userSettingsPath}/keybindings.json";
+    # snippetsPath = "${userSettingsPath}/snippets";
+
+    pathsToMakeWritable = lib.flatten [
+        (lib.optional (cfg.userSettings != { }) configFilePath)
+        # (lib.optional (cfg.userTasks != { }) tasksFilePath)
+        # (lib.optional (cfg.keybindings != { }) keybindingsFilePath)
+        # (lib.optional (cfg.globalSnippets != { })
+        # "${snippetsPath}/global.code-snippets")
+        # (lib.mapAttrsToList (language: _: "${snippetsPath}/${language}.json")
+        # cfg.languageSnippets)
+    ]; in
 {
+    imports = [
+        ../mutable.nix
+    ];
+
     programs.vscode = {
         enable = true;
+        userSettings = builtins.fromJSON (builtins.readFile ./settings.json);
         extensions = with pkgs.vscode-extensions; [
             # aaron-bond.better-comments
             esbenp.prettier-vscode
@@ -31,4 +53,9 @@
             yzhang.markdown-all-in-one
         ];
     };
+
+    home.file = lib.genAttrs pathsToMakeWritable (_: {
+        force = true;
+        mutable = true;
+    });
 }
