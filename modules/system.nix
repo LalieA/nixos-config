@@ -30,4 +30,12 @@
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
+
+    # Optimize storage
+    nix.gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 1w";
+    };
+    nix.settings.auto-optimise-store = true;
 }
