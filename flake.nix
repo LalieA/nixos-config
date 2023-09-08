@@ -12,10 +12,16 @@
       # `inputs.nixpkgs` of home manager must be kept consistent with `inputs.nixpkgs` of the current flake
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # VSCode extensions
+    nix-vscode-extensions = {
+      url = "github:nix-community/nix-vscode-extensions";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   ### Outputs ###
-  outputs = { self, nixpkgs, home-manager, ...}@inputs: {
+  outputs = { self, nixpkgs, home-manager, nix-vscode-extensions, ...}@inputs: {
     nixosConfigurations = {
       # hostname = "nixos"
       "nixos" = nixpkgs.lib.nixosSystem {
