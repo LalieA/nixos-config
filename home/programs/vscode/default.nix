@@ -1,4 +1,4 @@
-{ config, pkgs, lib, home-manager, nix-vscode-extensions, ... }:
+{ config, pkgs, lib, ... }:
 let
     cfg = config.programs.vscode;
 

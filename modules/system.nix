@@ -1,4 +1,4 @@
-{ config, pkgs, ...}:
+{ pkgs, ...}:
 
 {
     # Set your time zone.
