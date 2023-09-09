@@ -994,7 +994,7 @@
     "terminal.integrated.environmentChangesIndicator": "warnonly",
     "terminal.integrated.environmentChangesRelaunch": true,
     "terminal.integrated.fastScrollSensitivity": 5,
-    "terminal.integrated.fontFamily": "",
+    "terminal.integrated.fontFamily": "MesloLGS NF",
     "terminal.integrated.fontSize": 14,
     "terminal.integrated.fontWeight": "normal",
     "terminal.integrated.fontWeightBold": "bold",

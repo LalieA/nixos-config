@@ -28,6 +28,12 @@
         extraGroups = [ "wheel" "networkmanager" ];
     };
 
+    # Fonts
+    fonts.fontconfig.enable = true;
+    fonts.packages = with pkgs; [
+        meslo-lgs-nf
+    ];
+
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
