@@ -23,6 +23,9 @@
       url = "github:alexghr/alacritty-theme.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Nix User Repository (NUR)
+    nur.url = "github:nix-community/NUR";
   };
 
   ### Outputs ###
@@ -32,6 +35,7 @@
     home-manager,
     nix-vscode-extensions,
     alacritty-theme,
+    nur,
     ...}@inputs: {
     nixosConfigurations = {
       # hostname = "nixos"
@@ -52,6 +56,10 @@
           ({ pkgs, ... }: {
             nixpkgs.overlays = [ alacritty-theme.overlays.default ];
           })
+
+          # Nix User Repository (NUR)
+          nur.nixosModules.nur
+          { nixpkgs.overlays = [ nur.overlay ]; }
         ];
       };
     };
