@@ -13,6 +13,9 @@
         # network
         nmap
 
+        # productivity
+        obsidian
+
         # programming
         gcc
         python3
