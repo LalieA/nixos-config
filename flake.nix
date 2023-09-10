@@ -9,7 +9,6 @@
     # home-manager, used to manage user configuration
     home-manager = {
       url = "github:nix-community/home-manager/release-23.05";
-      # `inputs.nixpkgs` of home manager must be kept consistent with `inputs.nixpkgs` of the current flake
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -18,10 +17,22 @@
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # alacritty themes
+    alacritty-theme = {
+      url = "github:alexghr/alacritty-theme.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   ### Outputs ###
-  outputs = { self, nixpkgs, home-manager, nix-vscode-extensions, ...}@inputs: {
+  outputs = {
+    self,
+    nixpkgs,
+    home-manager,
+    nix-vscode-extensions,
+    alacritty-theme,
+    ...}@inputs: {
     nixosConfigurations = {
       # hostname = "nixos"
       "nixos" = nixpkgs.lib.nixosSystem {
@@ -36,6 +47,11 @@
             home-manager.useUserPackages = true;
             home-manager.users.lalie = import ./home;
           }
+
+          # alacritty themes
+          ({ pkgs, ... }: {
+            nixpkgs.overlays = [ alacritty-theme.overlays.default ];
+          })
         ];
       };
     };
