@@ -2,6 +2,7 @@
 
 {
     imports = [
+        ./terminals
         ./zsh.nix
     ];
 
@@ -10,6 +11,4 @@
         BROWSER = "firefox";
         TERM = "xterm-kitty";
     };
-
-    programs.kitty.enable = true;
 }
