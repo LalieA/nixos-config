@@ -27,6 +27,7 @@ let
         userSettings = builtins.fromJSON (builtins.readFile ./settings.json);
         extensions = with pkgs.vscode-extensions; [
             # aaron-bond.better-comments
+            bbenoist.nix
             esbenp.prettier-vscode
             # fabiospampinato.vscode-diff
             jebbs.plantuml
