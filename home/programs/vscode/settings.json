@@ -546,7 +546,7 @@
     "http.systemCertificates": true,
     "keyboard.dispatch": "code",
     "update.channel": "default",
-    "update.mode": "default",
+    "update.mode": "none",
     "update.showReleaseNotes": true,
     "comments.openPanel": "openOnSessionStartWithComments",
     "comments.openView": "firstFile",
