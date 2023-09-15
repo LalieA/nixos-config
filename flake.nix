@@ -43,7 +43,7 @@
         system = "x86_64-linux";
         modules = [
           # NixOS host
-          ./hosts/virtualbox
+          ./hosts/tuxedo
 
           # home-manager
           home-manager.nixosModules.home-manager {
