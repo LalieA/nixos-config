@@ -70,14 +70,12 @@
 
     substituters = [
       "https://cache.nixos.org"
-    ];
-
-    extra-substituers = [
-      "https://nix-community.cachix.org"
+      "https://hyprland.cachix.org"
     ];
 
     extra-trusted-public-keys = [
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
+      "hyprland.cachix.org-1:a7pgxzMz7+chwVL3/pzj6jIBMioiJM7ypFP8PwtkuGc="
     ];
   };
 }

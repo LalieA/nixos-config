@@ -4,7 +4,7 @@
     imports = [
         ./hardware-configuration.nix
         ../../modules/system.nix
-        ../../modules/gnome.nix
+        ../../modules/hyprland.nix
     ];
 
     # Bootloader
@@ -41,8 +41,11 @@
         #media-session.enable = true;
     };
 
-    # VirtualBox Guest Additions
-    virtualisation.virtualbox.guest.x11 = true;
+    # Make Hyprland working within VirtualBox VM
+    environment.sessionVariables = {
+        WLR_NO_HARDWARE_CURSORS = "1";
+        WLR_RENDERER_ALLOW_SOFTWARE = "1";
+    };
 
     system.stateVersion = "23.05";
 }
