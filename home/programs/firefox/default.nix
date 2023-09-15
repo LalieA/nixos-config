@@ -3,6 +3,7 @@
 {
     programs.firefox = {
         enable = true;
+        package = pkgs.firefox-wayland;
         profiles = {
             default = {
                 id = 0;
@@ -14,5 +15,9 @@
                 ];
             };
         };
+    };
+
+    home.sessionVariables = {
+        MOZ_ENABLE_WAYLAND = "1";
     };
 }
