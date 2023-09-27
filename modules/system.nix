@@ -43,5 +43,9 @@
         dates = "weekly";
         options = "--delete-older-than 1w";
     };
-    nix.settings.auto-optimise-store = true;
+    nix.settings = {
+        # Enable flakes globally
+        experimental-features = ["nix-command" "flakes"];
+        auto-optimise-store = true;
+    };
 }
