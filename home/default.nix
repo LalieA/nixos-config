@@ -1,10 +1,11 @@
-{ config, pkgs, lib, ... }:
+{ ... }:
 
 {
     imports = [
-        ./shell
-        ./programs
+        ./anyrun
         ./hyprland
+        ./programs
+        ./shell
     ];
 
     home = {
