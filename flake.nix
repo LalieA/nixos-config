@@ -32,6 +32,12 @@
       url = "github:Kirottu/anyrun";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # TUXEDO Control Center
+    tuxedo-nixos = {
+      url = "github:blitz/tuxedo-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   ### Outputs ###
@@ -42,6 +48,7 @@
     nix-vscode-extensions,
     alacritty-theme,
     nur,
+    tuxedo-nixos,
     ...}@inputs: {
     nixosConfigurations = {
       # hostname = "nixos"
@@ -60,13 +67,14 @@
           }
 
           # alacritty themes
-          ({ pkgs, ... }: {
-            nixpkgs.overlays = [ alacritty-theme.overlays.default ];
-          })
+          { nixpkgs.overlays = [ alacritty-theme.overlays.default ]; }
 
           # Nix User Repository (NUR)
           nur.nixosModules.nur
           { nixpkgs.overlays = [ nur.overlay ]; }
+
+          # TUXEDO Control Center
+          tuxedo-nixos.nixosModules.default
         ];
       };
     };
