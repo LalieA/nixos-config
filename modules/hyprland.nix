@@ -64,6 +64,13 @@
         # wayland support
         qt5.qtwayland
         qt6.qtwayland
+
+        # screen
+        brightnessctl
+
+        # inputs
+        libinput
+        wev
     ];
 
     # Enable GTK and use XDG portal for more compatibility
