@@ -6,6 +6,8 @@
         ./hyprland
         ./programs
         ./shell
+        ./swaync
+        ./waybar
     ];
 
     home = {

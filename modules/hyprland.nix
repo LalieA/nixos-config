@@ -28,20 +28,10 @@
     # Configure console keymap
     console.keyMap = "fr";
 
-    programs = {
-        # Enable the Hyprland Wayland compositor
-        hyprland = {
-            enable = true;
-            xwayland.enable = true;
-        };
-
-        # Enable the Waybar bar
-        waybar = {
-            enable = true;
-            package = pkgs.waybar.overrideAttrs (oldAttrs: {
-                mesonFlags = oldAttrs.mesonFlags ++ [ "-Dexperimental=true" ];
-            });
-        };
+    # Enable the Hyprland Wayland compositor
+    programs.hyprland = {
+        enable = true;
+        xwayland.enable = true;
     };
 
     environment.systemPackages = with pkgs; [
@@ -52,6 +42,9 @@
         # Hyprpaper (wallpaper)
         hyprpaper
 
+        # SwayNC (notifications)
+        swaynotificationcenter
+
         # PulseAudio
         pulseaudio
         wireplumber
@@ -59,7 +52,6 @@
         # complementary
         swayidle
         swaylock
-        swaybg
 
         # wayland support
         qt5.qtwayland
