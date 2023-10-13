@@ -18,8 +18,13 @@
 
         # programming
         gcc
+
         python3
+
         rustc
+        cargo
+        rustfmt
+
         shellcheck
         shfmt
 
