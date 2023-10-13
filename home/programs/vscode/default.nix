@@ -35,7 +35,7 @@ let
             mikestead.dotenv
             # mkhl.shfmt
             ms-azuretools.vscode-docker
-            ms-python.isort
+            # ms-python.isort
             # ms-python.pylint
             ms-python.python
             ms-toolsai.jupyter-keymap

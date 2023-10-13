@@ -30,9 +30,12 @@
 
     # Fonts
     fonts.fontconfig.enable = true;
-    fonts.packages = with pkgs; [
+    fonts.fonts = with pkgs; [
         meslo-lgs-nf
     ];
+
+    # Run Electron-based apps under Wayland
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
