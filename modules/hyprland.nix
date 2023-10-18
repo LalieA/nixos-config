@@ -48,6 +48,9 @@
         # SwayLock (lock screen)
         swaylock-effects
 
+        # SwayIDLE (idle manager)
+        swayidle
+
         # PulseAudio
         pulseaudio
         wireplumber

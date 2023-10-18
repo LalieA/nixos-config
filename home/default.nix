@@ -7,6 +7,7 @@
         ./programs
         ./shell
         ./swaylock
+        ./swayidle
         ./swaync
         ./waybar
         ./wlogout
