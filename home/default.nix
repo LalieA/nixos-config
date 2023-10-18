@@ -8,6 +8,7 @@
         ./shell
         ./swaync
         ./waybar
+        ./wlogout
     ];
 
     home = {

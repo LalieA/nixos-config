@@ -49,7 +49,7 @@
         pulseaudio
         wireplumber
 
-        # complementary
+        # IDLE - lock - logout
         swayidle
         swaylock
 
