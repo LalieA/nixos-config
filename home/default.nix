@@ -6,6 +6,7 @@
         ./hyprland
         ./programs
         ./shell
+        ./swaylock
         ./swaync
         ./waybar
         ./wlogout

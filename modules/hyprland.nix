@@ -45,13 +45,12 @@
         # SwayNC (notifications)
         swaynotificationcenter
 
+        # SwayLock (lock screen)
+        swaylock-effects
+
         # PulseAudio
         pulseaudio
         wireplumber
-
-        # IDLE - lock - logout
-        swayidle
-        swaylock
 
         # wayland support
         qt5.qtwayland

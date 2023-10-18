@@ -1,5 +1,5 @@
 { pkgs, ... }:
-    let lockCommand = "${pkgs.swaylock-effects}/bin/swaylock -f -i ~/.config/hypr/wallpaper.jpg --clock --indicator --indicator-radius 100 --indicator-thickness 15 --effect-blur 10x5 --text-color ffffff --show-failed-attempts";
+    let lockCommand = "${pkgs.swaylock-effects}/bin/swaylock -f";
 in
 {
     programs.wlogout = {
