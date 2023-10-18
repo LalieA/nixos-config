@@ -32,6 +32,7 @@
         minicom
 
         # system
+        htop
         dmidecode
         ethtool
         lm_sensors
