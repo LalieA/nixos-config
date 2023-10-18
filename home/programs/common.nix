@@ -6,6 +6,9 @@
         unzip
         zip
 
+        # file browsing
+        pcmanfm
+
         # messaging
         discord
         signal-desktop
