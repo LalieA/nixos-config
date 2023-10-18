@@ -31,6 +31,10 @@
             zstyle ':completion:*' select-prompt %SScrolling active: current selection at %p%s
             zstyle ':completion:*' verbose true
             _comp_options+=(globdots)
+
+            # fast navigation through words - ctrl + arrows
+            bindkey "\e[1;5C" forward-word
+            bindkey "\e[1;5D" backward-word
         '';
 
         plugins = [
