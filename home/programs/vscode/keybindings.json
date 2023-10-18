@@ -1,0 +1,11 @@
+[
+    {
+        "key":     "alt+tab",
+        "command": "workbench.action.terminal.focus"
+    },
+    {
+        "key":     "alt+tab",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when":    "terminalFocus"
+    }
+]
