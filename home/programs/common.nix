@@ -16,6 +16,9 @@
         # network
         nmap
 
+        # storage
+        gparted
+
         # productivity
         obsidian
 
