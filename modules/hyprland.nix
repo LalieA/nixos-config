@@ -55,6 +55,10 @@
         pulseaudio
         wireplumber
 
+        # Authentication agent
+        polkit_gnome
+        at-spi2-core
+
         # wayland support
         qt5.qtwayland
         qt6.qtwayland
@@ -75,4 +79,22 @@
 
     # Allow swaylock to unlock user session
     security.pam.services.swaylock = {};
+
+    # Enable polkit and authentication agent
+    security.polkit.enable = true;
+    systemd = {
+        user.services.polkit-gnome-authentication-agent-1 = {
+            description = "polkit-gnome-authentication-agent-1";
+            wantedBy = [ "graphical.target" ];
+            wants = [ "graphical.target" ];
+            after = [ "graphical.target" ];
+            serviceConfig = {
+                Type = "simple";
+                ExecStart = "${pkgs.polkit_gnome}/libexec/polkit-gnome-authentication-agent-1";
+                Restart = "on-failure";
+                RestartSec = 1;
+                TimeoutStopSec = 10;
+            };
+        };
+    };
 }
