@@ -22,6 +22,9 @@
         # productivity
         obsidian
 
+        # researches
+        zotero
+
         # programming
         gcc
 
