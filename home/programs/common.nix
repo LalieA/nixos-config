@@ -58,5 +58,8 @@
     ];
 
     # Auto-mount USB drives
-    services.udiskie.enable = true;
+    services.udiskie = {
+        enable = true;
+        notify = true;
+    };
 }

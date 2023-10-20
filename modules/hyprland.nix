@@ -75,4 +75,8 @@
 
     # Allow swaylock to unlock user session
     security.pam.services.swaylock = {};
+
+    # Auto-mount USB drives
+    services.gvfs.enable = true;
+    services.udisks2.enable = true;
 }
