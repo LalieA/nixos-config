@@ -21,6 +21,7 @@
 
         # productivity
         obsidian
+        tesseract4
 
         # researches
         zotero
