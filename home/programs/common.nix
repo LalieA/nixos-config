@@ -8,6 +8,7 @@
 
         # file browsing
         pcmanfm
+        file
 
         # messaging
         discord
