@@ -49,6 +49,10 @@
         "openssl-1.1.1w"
         "nodejs-14.21.3"
         "electron-13.6.9"
+        # Temporary fix for Obsidian
+        "electron-24.8.6"
+        # Temporary fix for Zotero
+        "zotero-6.0.26"
     ];
 
     system.stateVersion = "23.05";
