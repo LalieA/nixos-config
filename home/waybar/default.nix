@@ -1,5 +1,7 @@
 { pkgs, ... }:
-
+let
+    waybarStyle = builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css";
+in
 {
     programs.waybar = {
         enable = true;
@@ -9,7 +11,7 @@
         });
 
         style = ''
-            ${builtins.readFile "${pkgs.waybar}/etc/xdg/waybar/style.css"}
+            ${builtins.replaceStrings ["#workspaces button.focused"] ["#workspaces button.active"] waybarStyle}
 
             #custom-notifications {
                 padding: 0 10px;
@@ -28,7 +30,9 @@
             position = "top";
             spacing = 4;
 
-            modules-left = [];
+            modules-left = [
+                "wlr/workspaces"
+            ];
             modules-center = [];
             modules-right = [
                 "pulseaudio"
@@ -41,6 +45,14 @@
                 "clock"
                 "custom/notifications"
             ];
+
+            "wlr/workspaces" = {
+                format = "{icon}";
+                on-scroll-up = "hyprctl dispatch workspace e+1";
+                on-scroll-down = "hyprctl dispatch workspace e-1";
+                on-click = "activate";
+                sort-by-number = true;
+            };
 
             mpd = {
                 format = "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ⸨{songPosition}|{queueLength}⸩ {volume}% ";
