@@ -44,6 +44,7 @@ in
                 "battery"
                 "clock"
                 "custom/notifications"
+                "tray"
             ];
 
             "wlr/workspaces" = {
@@ -167,6 +168,10 @@ in
                 on-click = "swaync-client -t -sw";
                 on-click-right = "swaync-client -d -sw";
                 escape = true;
+            };
+
+            tray = {
+                spacing = 10;
             };
         }];
     };

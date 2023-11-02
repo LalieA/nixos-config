@@ -15,6 +15,7 @@
         signal-desktop
 
         # network
+        networkmanagerapplet
         nmap
 
         # storage
