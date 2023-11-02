@@ -150,6 +150,7 @@ in
             };
 
             "custom/notifications" = {
+                layer = "bottom";
                 tooltip = false;
                 format = "{} {icon}";
                 format-icons = {
