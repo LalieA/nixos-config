@@ -21,6 +21,9 @@
         # storage
         gparted
 
+        # sound
+        pavucontrol
+
         # productivity
         obsidian
         tesseract4
