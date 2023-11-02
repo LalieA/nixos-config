@@ -24,6 +24,11 @@
         # proxy.noProxy = "127.0.0.1,localhost,internal.domain";
     };
 
+    # Bluetooth
+    hardware.bluetooth.enable = true; # enables support for bluetooth
+    hardware.bluetooth.powerOnBoot = false; # don't powers up bluetooth controller on boot
+    services.blueman.enable = true; # enables bluetooth management service
+
     # Enable CUPS to print documents.
     services.printing.enable = true;
 
