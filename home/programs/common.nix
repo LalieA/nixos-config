@@ -10,6 +10,12 @@
         pcmanfm
         file
 
+        # clipboard & screenshot
+        wl-clipboard
+        grim
+        slurp
+        swappy
+
         # messaging
         discord
         signal-desktop
@@ -71,4 +77,7 @@
         enable = true;
         notify = true;
     };
+
+    # Swappy configuration (screenshots)
+    home.file.".config/swappy/config".source = ./swappy.conf;
 }
