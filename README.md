@@ -1,30 +1,93 @@
 # ❄️ NixOS setup with flakes ❄️
-> Tuxedo InfinityBook Pro 14 (8th generation)
+> 💻 Tuxedo InfinityBook Pro 14 (8th generation)
 
-There are still a lot of things to do to make NixOS my everyday system, but I'm working on it.
+NixOS is now my everyday system, I hope this repository will help you build yours!
 
-## What has been done
-- Use the default GNOME/Wayland environment provided by NixOS's official ISO image
--  Switch to Hyprland Wayland compositor with waybar, hyprpaper and swaylock
-- Deploy in a VirtualBox Virtual Machine
-- Setup a general environment:
-  - Configured shell environments Kitty, Alacritty and zsh
-  - Configured programs such as git, vscode (with extensions), firefox (with extensions)
-- Hard install on my Tuxedo 💻
-  - Made a working Hyprland configuration with some i3 and function keys bindings
-  - Add TUXEDO Control Center
+## Configuration
 
-## What's planned
-- Continue various configurations:
-  - Enable and test Bluetooth
-  - Enable and test HDMI and USB-C external screens
-  - Enable and test screen video streaming for Zoom-like softwares
-  - Enable and test webcam
-  - Enable and test microphone
-- Add security-related features and secret handling : SSH keys, known SSH hosts, PGP key for signed commits, ...
+| | |
+| ------------: | :------ |
+| **NixOS release** | **23.05** |
+| **Display Manager** | [GDM](https://wiki.archlinux.org/title/GDM) |
+| **Window Manager/Compositor** | [Hyprland](https://hyprland.org/) (Wayland) |
+| **Status bar** | [Waybar](https://github.com/Alexays/Waybar) |
+| **Wallpaper Manager** | [hyprpaper](https://github.com/hyprwm/hyprpaper) |
+| **App Launcher**    | [anyrun](https://github.com/Kirottu/anyrun) |
+| **Notification Center** | [swaync](https://github.com/ErikReider/SwayNotificationCenter) |
+| **Screen Locker** | [swaylock-effects](https://github.com/mortie/swaylock-effects) |
+| **Logout & Power Menu** | [wlogout](https://github.com/ArtsyMacaw/wlogout) |
+| **IDLE Manager** | [swayidle](https://github.com/swaywm/swayidle) |
+| **Network Manager** | [NetworkManager](https://wiki.archlinux.org/title/NetworkManager) |
+| **Terminal Emulators** | [kitty](https://sw.kovidgoyal.net/kitty/), [Alacritty](https://github.com/alacritty/alacritty) |
+| **Shell** | [zsh](https://wiki.archlinux.org/title/zsh) + [powerlevel10k](https://github.com/romkatv/powerlevel10k) |
+| **Editor** | [Visual Studio Code](https://code.visualstudio.com/) |
+| **File Browser** | [PCManFM](https://wiki.archlinux.org/title/PCManFM) |
+| **Snapshot & Editing** | [swappy](https://github.com/jtheoof/swappy) |
+| **Miscellaneous** | [TUXEDO Control Center](https://www.tuxedocomputers.com/en/TUXEDO-Control-Center.tuxedo), NetworkManager & Blueman applets, git, ...|
 
-## In the future
-- Setup development environments
-- See if a Yubikey could act as the master key for secrets encryption/decryption. It could also be interesting to take a look at LUKS full disk encryption with such a key.
+## How to install and how to manage system's configuration with git
 
-> These are my first steps with Nix, NixOS and flakes, be kind please I am suffering
+Git handles very well text files such as NixOS configuration ones; I strongly suggest you to use it to keep track of the changes you made and for easy rollback.
+
+The system's configuration is located by default in `/etc/nixos`.
+As it is a root directory, it is not practical to initialize a git repository directly in this folder.
+What could be done is making this directory a symbolic link to a more user friendly one.
+
+<details>
+<summary><strong>Backup your current configuration</strong></summary>
+
+```
+sudo mv /etc/nixos /etc/nixos-old
+```
+</details>
+
+<details>
+<summary><strong>Download this configuration...</strong></summary>
+
+```
+cd ~/Documents && git clone git@github.com:LalieA/nixos-config.git
+```
+</details>
+
+<details>
+<summary><strong>... or initialize yours</strong></summary>
+
+```
+cd ~/Documents/nixos-config
+cp -R /etc/nixos-old/* .
+git init
+```
+</details>
+
+<details>
+<summary><strong>Create a symbolic link from your friendly directory</strong></summary>
+
+```
+sudo ln -s ~/Documents/nixos-config /etc/nixos
+```
+</details>
+
+<details>
+<summary><strong>And deploy your configuration!</strong></summary>
+
+```
+sudo nixos-rebuild switch
+```
+</details>
+
+## What has been tested
+- Wifi
+- Bluetooth
+- Integrated camera
+- Integrated microphone
+- Screen streaming through web-based video conferences
+- Multi-screen (built-in HDMI and through USB-C)
+
+## What's planned in the future
+- Try to embed this configuration into an ISO image, for live and/or installation on another device
+- Handle secrets with [sops-nix](https://github.com/Mic92/sops-nix)...
+- ... and setup a LUKS fully encrypted disk...
+- ... with master keys from a YubiKey
+- Still improve this configuration while using it
+
+> To make my first steps into Nix and NixOS, I followed [the awesome guide from ryan4yin](https://nixos-and-flakes.thiscute.world/introduction/), don't hesitate to check it out!
