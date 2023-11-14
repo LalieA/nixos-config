@@ -80,6 +80,12 @@
     services.gvfs.enable = true;
     services.udisks2.enable = true;
 
+    # Use docker in rootless mode
+    virtualisation.docker.rootless = {
+        enable = true;
+        setSocketVariable = true;
+    };
+
     # Use Bluetooth headset buttons to control media player
     systemd.user.services.mpris-proxy = {
         description = "Mpris proxy";
