@@ -2,13 +2,10 @@
 
 {
     home.packages = with pkgs; [
+        ### Useful ###
         # archives
         unzip
         zip
-
-        # file browsing
-        pcmanfm
-        file
 
         # clipboard & screenshot
         wl-clipboard
@@ -16,26 +13,45 @@
         slurp
         swappy
 
-        # messaging
-        discord
-        signal-desktop
+        # files
+        pcmanfm
+        file
 
         # network
         networkmanagerapplet
         nmap
 
-        # storage
-        gparted
-
         # sound
         pavucontrol
 
+        # storage
+        gparted
+
+        # system
+        htop
+        dmidecode
+        ethtool
+        lm_sensors
+        pciutils
+        usbutils
+
+        lsof
+        ltrace
+        strace
+
+        # web
+        curl
+        wget
+
+        ### Miscellaneous ###
         # productivity
         obsidian
+        zotero
         tesseract4
 
-        # researches
-        zotero
+        # messaging
+        discord
+        signal-desktop
 
         # programming
         gcc
@@ -52,24 +68,8 @@
         # serial
         minicom
 
-        # system
-        htop
-        dmidecode
-        ethtool
-        lm_sensors
-        pciutils
-        usbutils
-
-        lsof
-        ltrace
-        strace
-
         # virtualization
         docker
-
-        # web
-        curl
-        wget
     ];
 
     # Auto-mount USB drives
