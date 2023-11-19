@@ -3,6 +3,7 @@
 {
     imports = [
         ./anyrun
+        ./direnv
         ./hyprland
         ./programs
         ./shell
