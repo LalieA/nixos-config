@@ -58,9 +58,7 @@
 
         python3
 
-        rustc
-        cargo
-        rustfmt
+        rustup
 
         shellcheck
         shfmt
