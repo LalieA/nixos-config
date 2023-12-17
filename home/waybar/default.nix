@@ -31,7 +31,7 @@ in
             spacing = 4;
 
             modules-left = [
-                "wlr/workspaces"
+                "hyprland/workspaces"
             ];
             modules-center = [];
             modules-right = [
@@ -47,7 +47,7 @@ in
                 "tray"
             ];
 
-            "wlr/workspaces" = {
+            "hyprland/workspaces" = {
                 format = "{icon}";
                 on-scroll-up = "hyprctl dispatch workspace e+1";
                 on-scroll-down = "hyprctl dispatch workspace e-1";
