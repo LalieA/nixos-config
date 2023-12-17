@@ -49,16 +49,10 @@
     security.rtkit.enable = true;
 
     # TUXEDO Control Center - needs deprecated (and insecure) packages
-    hardware.tuxedo-control-center.enable = true;
+    # hardware.tuxedo-control-center.enable = true;
     nixpkgs.config.permittedInsecurePackages = [
-        "openssl-1.1.1w"
-        "nodejs-14.21.3"
-        "electron-13.6.9"
-        # Temporary fix for Obsidian
-        "electron-24.8.6"
-        # Temporary fix for Zotero
-        "zotero-6.0.26"
+        "electron-25.9.0"
     ];
 
-    system.stateVersion = "23.05";
+    system.stateVersion = "23.11";
 }

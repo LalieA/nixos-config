@@ -4,11 +4,11 @@
   ### Inputs ###
   inputs = {
     # Official NixOS package source
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
 
     # home-manager, used to manage user configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-23.05";
+      url = "github:nix-community/home-manager/release-23.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -34,10 +34,10 @@
     };
 
     # TUXEDO Control Center
-    tuxedo-nixos = {
-      url = "github:blitz/tuxedo-nixos";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # tuxedo-nixos = {
+    #   url = "github:blitz/tuxedo-nixos";
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
   };
 
   ### Outputs ###
@@ -48,7 +48,7 @@
     nix-vscode-extensions,
     alacritty-theme,
     nur,
-    tuxedo-nixos,
+    # tuxedo-nixos,
     ...}@inputs: {
     nixosConfigurations = {
       # hostname = "nixos"
@@ -74,7 +74,7 @@
           { nixpkgs.overlays = [ nur.overlay ]; }
 
           # TUXEDO Control Center
-          tuxedo-nixos.nixosModules.default
+          # tuxedo-nixos.nixosModules.default
         ];
       };
     };

@@ -47,5 +47,5 @@
         WLR_RENDERER_ALLOW_SOFTWARE = "1";
     };
 
-    system.stateVersion = "23.05";
+    system.stateVersion = "23.11";
 }
