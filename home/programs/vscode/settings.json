@@ -421,7 +421,7 @@
     "window.restoreFullscreen": false,
     "window.restoreWindows": "all",
     "window.title": "${dirty}${activeEditorMedium}${separator}${rootName}",
-    "window.titleBarStyle": "native",
+    "window.titleBarStyle": "custom",
     "window.titleSeparator": " - ",
     "window.zoomLevel": 0,
     "files.associations": {},
