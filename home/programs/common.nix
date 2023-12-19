@@ -6,6 +6,7 @@
         # archives
         unzip
         zip
+        rar
 
         # clipboard & screenshot
         wl-clipboard
