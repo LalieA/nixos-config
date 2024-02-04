@@ -21,6 +21,7 @@
         # network
         networkmanagerapplet
         nmap
+        wireshark
 
         # sound
         pavucontrol

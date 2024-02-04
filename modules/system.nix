@@ -25,7 +25,7 @@
         hashedPassword = "$6$rGxHh9Bkaz2AWlfk$a797yyofU8ybDiKbsPOKGuaHX5Hc/EsPkFe.n00MZQ3zsOu8J8tDbw92GwQB.LRSxcgEJ.AM2gRVJ.QBr5x2V0";
         isNormalUser = true;
         shell = pkgs.zsh;
-        extraGroups = [ "wheel" "networkmanager" "docker" ];
+        extraGroups = [ "wheel" "networkmanager" "docker" "wireshark" ];
     };
 
     # Fonts
@@ -36,6 +36,9 @@
 
     # Run Electron-based apps under Wayland
     environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+    # Enable Wireshark
+    programs.wireshark.enable = true;
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
