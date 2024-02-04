@@ -2,16 +2,9 @@
 
 {
     imports = [
-        ./anyrun
-        ./direnv
-        ./hyprland
+        ./desktop-environment
         ./programs
         ./shell
-        ./swaylock
-        ./swayidle
-        ./swaync
-        ./waybar
-        ./wlogout
     ];
 
     home = {
