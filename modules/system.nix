@@ -25,7 +25,7 @@
         hashedPassword = "$6$rGxHh9Bkaz2AWlfk$a797yyofU8ybDiKbsPOKGuaHX5Hc/EsPkFe.n00MZQ3zsOu8J8tDbw92GwQB.LRSxcgEJ.AM2gRVJ.QBr5x2V0";
         isNormalUser = true;
         shell = pkgs.zsh;
-        extraGroups = [ "wheel" "networkmanager" "docker" "wireshark" ];
+        extraGroups = [ "wheel" "networkmanager" "docker" "vboxusers" "wireshark" ];
     };
 
     # Fonts
@@ -42,6 +42,12 @@
 
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
+
+    # Enable VirtualBox
+    virtualisation.virtualbox.host = {
+        enable = true;
+        enableExtensionPack = true;
+    };
 
     # Optimize storage
     nix.gc = {
