@@ -51,6 +51,9 @@
         zotero
         tesseract4
 
+        # graphism
+        gimp
+
         # messaging
         discord
         signal-desktop
