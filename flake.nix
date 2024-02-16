@@ -50,11 +50,18 @@
     nur,
     # tuxedo-nixos,
     ...}@inputs: {
-    nixosConfigurations = {
-      # hostname = "nixos"
-      "nixos" = nixpkgs.lib.nixosSystem {
+    nixosConfigurations = let
+      commonModules = [
+          # alacritty themes
+          { nixpkgs.overlays = [ alacritty-theme.overlays.default ]; }
+
+          # Nix User Repository (NUR)
+          nur.nixosModules.nur
+          { nixpkgs.overlays = [ nur.overlay ]; }
+      ];
+      mainConfiguration = {
         system = "x86_64-linux";
-        modules = [
+        modules = commonModules ++ [
           # NixOS host
           ./hosts/tuxedo
 
@@ -66,15 +73,40 @@
             home-manager.extraSpecialArgs = { inherit inputs; };
           }
 
-          # alacritty themes
-          { nixpkgs.overlays = [ alacritty-theme.overlays.default ]; }
-
-          # Nix User Repository (NUR)
-          nur.nixosModules.nur
-          { nixpkgs.overlays = [ nur.overlay ]; }
-
           # TUXEDO Control Center
           # tuxedo-nixos.nixosModules.default
+        ];
+      };
+      liveConfiguration = {
+        system = "x86_64-linux";
+        modules = commonModules ++ [
+          # Live config
+          ./modules/live.nix
+
+          # home-manager
+          home-manager.nixosModules.home-manager {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            home-manager.users.live = import ./home-live;
+            home-manager.extraSpecialArgs = { inherit inputs; };
+          }
+        ];
+      };
+    in {
+      # Main system, hostname = "nixos"
+      "nixos" = nixpkgs.lib.nixosSystem {
+        inherit (mainConfiguration) system;
+        inherit (mainConfiguration) modules;
+      };
+
+      # Live ISO, hostname = "live"
+      ### build with: nix build .#nixosConfigurations.live.config.system.build.isoImage
+      ### burn with: sudo dd if=./result/iso/nixos-live.iso of=/dev/sdX1 bs=1M status=progress oflag=sync
+      "live" = nixpkgs.lib.nixosSystem {
+        inherit (liveConfiguration) system;
+        modules = liveConfiguration.modules ++ [
+          "${nixpkgs}/nixos/modules/installer/cd-dvd/iso-image.nix"
+          "${nixpkgs}/nixos/modules/profiles/all-hardware.nix"
         ];
       };
     };
