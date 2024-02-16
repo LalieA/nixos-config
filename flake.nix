@@ -3,8 +3,11 @@
 
   ### Inputs ###
   inputs = {
-    # Official NixOS package source
+    # Official NixOS package source (release, default)
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-23.11";
+
+    # Official NixOS package source (unstable, for new packages)
+    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # home-manager, used to manage user configuration
     home-manager = {
@@ -44,6 +47,7 @@
   outputs = {
     self,
     nixpkgs,
+    nixpkgs-unstable,
     home-manager,
     nix-vscode-extensions,
     alacritty-theme,
@@ -51,6 +55,12 @@
     # tuxedo-nixos,
     ...}@inputs: {
     nixosConfigurations = let
+      system = "x86_64-linux";
+      pkgs-unstable = import nixpkgs-unstable {
+        inherit system;
+        config = { allowUnfree = true; };
+      };
+
       commonModules = [
           # alacritty themes
           { nixpkgs.overlays = [ alacritty-theme.overlays.default ]; }
@@ -59,8 +69,9 @@
           nur.nixosModules.nur
           { nixpkgs.overlays = [ nur.overlay ]; }
       ];
+
       mainConfiguration = {
-        system = "x86_64-linux";
+        inherit system;
         modules = commonModules ++ [
           # NixOS host
           ./hosts/tuxedo
@@ -70,15 +81,16 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.lalie = import ./home;
-            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.extraSpecialArgs = { inherit inputs; inherit pkgs-unstable; };
           }
 
           # TUXEDO Control Center
           # tuxedo-nixos.nixosModules.default
         ];
       };
+
       liveConfiguration = {
-        system = "x86_64-linux";
+        inherit system;
         modules = commonModules ++ [
           # Live config
           ./modules/live.nix
@@ -88,7 +100,7 @@
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
             home-manager.users.live = import ./home-live;
-            home-manager.extraSpecialArgs = { inherit inputs; };
+            home-manager.extraSpecialArgs = { inherit inputs; inherit pkgs-unstable; };
           }
         ];
       };
