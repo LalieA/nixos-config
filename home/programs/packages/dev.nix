@@ -4,6 +4,7 @@ let
         # network
         nmap
         wireshark
+        snort
 
         # programming
         gcc
