@@ -86,6 +86,9 @@
     # Enable Wireshark
     programs.wireshark.enable = true;
 
+    # Enable GNOME Keyring (required by programs like ProtonVPN)
+    services.gnome.gnome-keyring.enable = true;
+
     # Fonts
     fonts.fontconfig.enable = true;
     fonts.packages = with pkgs; [

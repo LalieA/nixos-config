@@ -49,6 +49,9 @@
         enableExtensionPack = true;
     };
 
+    # Enable GNOME Keyring (required by programs like ProtonVPN)
+    services.gnome.gnome-keyring.enable = true;
+
     # Optimize storage
     nix.gc = {
         automatic = true;
