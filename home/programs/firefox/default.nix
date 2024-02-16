@@ -10,8 +10,10 @@
                 search.force = true;
                 settings = builtins.fromJSON (builtins.readFile ./user.js);
                 extensions = with pkgs.nur.repos.rycee.firefox-addons; [
-                    ublock-origin
+                    noscript
+                    privacy-badger
                     skip-redirect
+                    ublock-origin
                 ];
             };
         };
