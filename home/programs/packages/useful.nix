@@ -1,6 +1,10 @@
 { pkgs, pkgs-unstable, ... }:
 let
     usefulPackages = with pkgs; [
+        # audio
+        audacity
+        ffmpeg_6-full
+
         # graphism
         gimp
 
