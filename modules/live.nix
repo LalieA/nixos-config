@@ -66,6 +66,15 @@
         };
     };
 
+    ## SYSTEM-WIDE PACKAGES
+    # Pidgin plugins
+    nixpkgs.config.packageOverrides = pkgs: with pkgs; {
+        pidgin-with-plugins = pkgs.pidgin.override {
+            plugins = [ pidgin-otr purple-matrix ];
+        };
+    };
+
+
     ## USERS
     programs.zsh.enable = true;
     users.users.live = {
