@@ -14,6 +14,7 @@ let
 
         # messaging
         pidgin-with-plugins
+        gajim
     ];
 in {
     home.packages = tailsPackages;
