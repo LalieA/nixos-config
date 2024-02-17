@@ -15,6 +15,7 @@ let
         # files
         pcmanfm
         file
+        tree
 
         # network
         networkmanagerapplet
@@ -24,6 +25,7 @@ let
 
         # storage
         gparted
+        gptfdisk
 
         # system
         htop
