@@ -8,6 +8,9 @@ let
         # graphism
         gimp
 
+        # email
+        thunderbird
+
         # messaging
         discord
         signal-desktop
