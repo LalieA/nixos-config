@@ -93,4 +93,7 @@
         wantedBy = [ "default.target" ];
         serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
     };
+
+    # Run Electron-based apps under Wayland
+    environment.sessionVariables.NIXOS_OZONE_WL = "1";
 }

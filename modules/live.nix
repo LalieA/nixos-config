@@ -106,20 +106,17 @@
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
-    # Run Electron-based apps under Wayland
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
+    # Fonts
+    fonts.fontconfig.enable = true;
+    fonts.packages = with pkgs; [
+        meslo-lgs-nf
+    ];
 
     # Enable Wireshark
     programs.wireshark.enable = true;
 
     # Enable GNOME Keyring (required by programs like ProtonVPN)
     services.gnome.gnome-keyring.enable = true;
-
-    # Fonts
-    fonts.fontconfig.enable = true;
-    fonts.packages = with pkgs; [
-        meslo-lgs-nf
-    ];
 
     system.stateVersion = "23.11";
 }

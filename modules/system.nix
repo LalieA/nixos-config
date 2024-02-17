@@ -1,10 +1,11 @@
 { pkgs, ...}:
 
 {
-    # Set your time zone.
+    ## SYSTEM CONFIGURATION
+    # Time zone
     time.timeZone = "Europe/Paris";
 
-    # Select internationalisation properties.
+    # Internationalisation properties
     i18n.defaultLocale = "fr_FR.UTF-8";
 
     i18n.extraLocaleSettings = {
@@ -19,7 +20,8 @@
         LC_TIME = "fr_FR.UTF-8";
     };
 
-    # Users
+
+    ## USERS
     programs.zsh.enable = true;
     users.users.lalie = {
         hashedPassword = "$6$rGxHh9Bkaz2AWlfk$a797yyofU8ybDiKbsPOKGuaHX5Hc/EsPkFe.n00MZQ3zsOu8J8tDbw92GwQB.LRSxcgEJ.AM2gRVJ.QBr5x2V0";
@@ -28,29 +30,28 @@
         extraGroups = [ "wheel" "networkmanager" "docker" "vboxusers" "wireshark" ];
     };
 
+
+    ## MISC
+    # Allow unfree packages
+    nixpkgs.config.allowUnfree = true;
+
     # Fonts
     fonts.fontconfig.enable = true;
     fonts.packages = with pkgs; [
         meslo-lgs-nf
     ];
 
-    # Run Electron-based apps under Wayland
-    environment.sessionVariables.NIXOS_OZONE_WL = "1";
-
     # Enable Wireshark
     programs.wireshark.enable = true;
 
-    # Allow unfree packages
-    nixpkgs.config.allowUnfree = true;
+    # Enable GNOME Keyring (required by programs like ProtonVPN)
+    services.gnome.gnome-keyring.enable = true;
 
     # Enable VirtualBox
     virtualisation.virtualbox.host = {
         enable = true;
         enableExtensionPack = true;
     };
-
-    # Enable GNOME Keyring (required by programs like ProtonVPN)
-    services.gnome.gnome-keyring.enable = true;
 
     # Optimize storage
     nix.gc = {
