@@ -1,10 +1,6 @@
 { nixpkgs, pkgs, lib, ... }:
 
 {
-    imports = [
-        ./hyprland.nix
-    ];
-
     ## ISO
     isoImage = {
         isoName = lib.mkForce "nixos-live.iso";

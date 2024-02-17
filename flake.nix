@@ -92,8 +92,8 @@
       liveConfiguration = {
         inherit system;
         modules = commonModules ++ [
-          # Live config
-          ./modules/live.nix
+          # NixOS live host
+          ./hosts/live
 
           # home-manager
           home-manager.nixosModules.home-manager {
