@@ -5,6 +5,7 @@
         ../../home/programs/packages/base.nix
         ../../home/programs/packages/useful.nix
         ../../home/programs/packages/dev.nix
+        ../../home/programs/packages/tails-tools.nix
         ../../home/programs/direnv
         ./librewolf
         ./git
