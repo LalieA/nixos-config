@@ -16,6 +16,7 @@ let
         pcmanfm
         file
         tree
+        exiftool
 
         # network
         networkmanagerapplet
