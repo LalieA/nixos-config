@@ -479,7 +479,7 @@
     },
     "explorer.compactFolders": true,
     "explorer.confirmDelete": false,
-    "explorer.confirmDragAndDrop": true,
+    "explorer.confirmDragAndDrop": false,
     "explorer.confirmUndo": "default",
     "explorer.copyRelativePathSeparator": "auto",
     "explorer.decorations.badges": true,
