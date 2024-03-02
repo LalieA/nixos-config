@@ -15,6 +15,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Impermanence, used to define persistent files for temporary rootfs
+    impermanence.url = "github:nix-community/impermanence";
+
     # VSCode extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
@@ -49,6 +52,7 @@
     nixpkgs,
     nixpkgs-unstable,
     home-manager,
+    impermanence,
     nix-vscode-extensions,
     alacritty-theme,
     nur,
@@ -102,6 +106,9 @@
             home-manager.users.live = import ./home-live;
             home-manager.extraSpecialArgs = { inherit inputs; inherit pkgs-unstable; };
           }
+
+          # Impermanence
+          impermanence.nixosModules.impermanence
         ];
       };
     in {
@@ -113,7 +120,14 @@
 
       # Live ISO, hostname = "live"
       ### build with: nix build .#nixosConfigurations.live.config.system.build.isoImage
-      ### burn with: sudo dd if=./result/iso/nixos-live.iso of=/dev/sdX1 bs=1M status=progress oflag=sync
+      ### burn with: sudo dd if=./result/iso/nixos-live.iso of=/dev/sdX bs=1M status=progress oflag=sync
+      ### add persistent partition with: sudo fdisk --wipe=never -t dos /dev/sdX
+      ###                                 >  n, p, <Enter>, <Enter>, <Enter>, w
+      ###                                sudo mkfs.ext4 -L persistent /dev/sdX3
+      ###                                sudo mount /dev/sdX3 /mnt/persistent
+      ###                                sudo chown -R :users /mnt/persistent
+      ###                                sudo chmod -R g+rw /mnt/persistent
+      ### NOTE: the first boot may fail because of Impermanence which currently cannot mount directories (stage 1) that are not yet created (stage 2).
       "live" = nixpkgs.lib.nixosSystem {
         inherit (liveConfiguration) system;
         modules = liveConfiguration.modules ++ [

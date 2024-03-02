@@ -10,6 +10,13 @@
         squashfsCompression = "zstd -Xcompression-level 6";
     };
 
+    fileSystems."/persistent" =
+      {
+        neededForBoot = true;
+        device = "/dev/disk/by-label/persistent";
+        fsType = "ext4";
+      };
+
     ## HARDWARE TWEAKS
     # Bluetooth
     hardware.bluetooth.enable = true; # enables support for bluetooth
