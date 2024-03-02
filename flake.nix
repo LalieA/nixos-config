@@ -1,6 +1,4 @@
 {
-  description = "Lalie's NixOS flake";
-
   ### Inputs ###
   inputs = {
     # Official NixOS package source (release, default)
