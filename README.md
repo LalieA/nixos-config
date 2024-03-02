@@ -3,7 +3,10 @@
 
 NixOS is now my everyday system, I hope this repository will help you build yours!
 
-## Configuration
+This Flake also contains a USB Live configuration which aim is to be as close to [Tails](https://tails.net/doc/about/features/index.en.html) as possible, in terms of pre-installed packages and security configuration; on top of my usual NixOS environment.
+It is currently a work in progress as some features are not yet implemented (especially application isolation and some utilities like a Bitcoin wallet).
+
+## Main configuration
 
 | | |
 | ------------: | :------ |
@@ -25,8 +28,10 @@ NixOS is now my everyday system, I hope this repository will help you build your
 | **Snapshot & Editing** | [swappy](https://github.com/jtheoof/swappy) |
 | **Miscellaneous** | [TUXEDO Control Center](https://www.tuxedocomputers.com/en/TUXEDO-Control-Center.tuxedo), NetworkManager & Blueman applets, git, ...|
 
-## How to install and how to manage system's configuration with git
+## Live configuration
+Work in progress
 
+## How to install and how to manage system's configuration with git
 Git handles very well text files such as NixOS configuration ones; I strongly suggest you to use it to keep track of the changes you made and for easy rollback.
 
 The system's configuration is located by default in `/etc/nixos`.
@@ -84,7 +89,7 @@ sudo nixos-rebuild switch
 - Multi-screen (built-in HDMI and through USB-C)
 
 ## What's planned in the future
-- Try to embed this configuration into an ISO image, for live and/or installation on another device
+- Try to embed this configuration into an ISO image dedicated to installation on another device, with a disk partitionning handled by [Disko](https://github.com/nix-community/disko)
 - Handle secrets with [sops-nix](https://github.com/Mic92/sops-nix)...
 - ... and setup a LUKS fully encrypted disk...
 - ... with master keys from a YubiKey
