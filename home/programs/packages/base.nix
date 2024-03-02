@@ -20,6 +20,7 @@ let
 
         # network
         networkmanagerapplet
+        dig
 
         # sound
         pavucontrol
@@ -27,6 +28,7 @@ let
         # storage
         gparted
         gptfdisk
+        testdisk
 
         # system
         htop
