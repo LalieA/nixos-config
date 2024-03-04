@@ -159,6 +159,11 @@
     };
 
 
+    ## NETWORK
+    # Disable IPv6
+    networking.enableIPv6  = false;
+
+
     ## MISC
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
