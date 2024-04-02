@@ -5,6 +5,7 @@
         ./hardware-configuration.nix
         ../../modules/system.nix
         ../../modules/hyprland.nix
+        ../../modules/kali-tools.nix
     ];
 
     # Bootloader
