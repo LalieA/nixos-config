@@ -1,4 +1,4 @@
-{ ... }:
+{ pkgs, ... }:
 
 {
     imports = [
@@ -48,6 +48,9 @@
         #media-session.enable = true;
     };
     security.rtkit.enable = true;
+
+    # OpenCL Intel runtime
+    hardware.opengl.extraPackages = [ pkgs.intel-compute-runtime ];
 
     # TUXEDO Control Center - needs deprecated (and insecure) packages
     # hardware.tuxedo-control-center.enable = true;
