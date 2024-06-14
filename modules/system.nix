@@ -40,6 +40,9 @@
     # Allow unfree packages
     nixpkgs.config.allowUnfree = true;
 
+    # Enable Flipper Zero support
+    hardware.flipperzero.enable = true;
+
     # Fonts
     fonts.fontconfig.enable = true;
     fonts.packages = with pkgs; [
