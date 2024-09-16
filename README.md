@@ -3,14 +3,11 @@
 
 NixOS is now my everyday system, I hope this repository will help you build yours!
 
-This Flake also contains a USB Live configuration which aim is to be as close to [Tails](https://tails.net/doc/about/features/index.en.html) as possible, in terms of pre-installed packages and security configuration; on top of my usual NixOS environment.
-It is currently a work in progress as some features are not yet implemented (especially application isolation and some utilities like a Bitcoin wallet).
-
 ## Main configuration
 
 | | |
 | ------------: | :------ |
-| **NixOS release** | **23.11** |
+| **NixOS release** | **24.05** |
 | **Display Manager** | [GDM](https://wiki.archlinux.org/title/GDM) |
 | **Window Manager/Compositor** | [Hyprland](https://hyprland.org/) (Wayland) |
 | **Status bar** | [Waybar](https://github.com/Alexays/Waybar) |
@@ -86,7 +83,7 @@ sudo nixos-rebuild switch
 - Integrated camera
 - Integrated microphone
 - Screen streaming through web-based video conferences
-- Multi-screen (built-in HDMI and through USB-C)
+- Multi-screen (built-in HDMI and 2 screens through USB-C)
 
 ## What's planned in the future
 - Try to embed this configuration into an ISO image dedicated to installation on another device, with a disk partitionning handled by [Disko](https://github.com/nix-community/disko)
