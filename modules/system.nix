@@ -1,5 +1,7 @@
 { pkgs, ...}:
-
+let
+    dofus = import ./misc/ankama-launcher.nix {inherit pkgs;};
+in
 {
     ## SYSTEM CONFIGURATION
     # Time zone
@@ -42,6 +44,9 @@
 
     # Enable Flipper Zero support
     hardware.flipperzero.enable = true;
+
+    # Install Ankama-Launcher / Dofus
+    environment.systemPackages = [ dofus ];
 
     # Fonts
     fonts.fontconfig.enable = true;
