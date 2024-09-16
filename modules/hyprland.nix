@@ -8,18 +8,15 @@
         # Enable the windowing system
         xserver = {
             enable = true;
-            layout = "fr";
-            xkbVariant = "azerty";
-
+            xkb.variant = "azerty";
+            xkb.layout = "fr";
             # Enable the GNOME Display Manager
-            displayManager = {
-                defaultSession = "hyprland";
-                gdm = {
-                    enable = true;
-                    wayland = true;
-                };
+            displayManager.gdm = {
+                enable = true;
+                wayland = true;
             };
         };
+        displayManager.defaultSession = "hyprland";
 
         # Enable dbus
         dbus.enable = true;

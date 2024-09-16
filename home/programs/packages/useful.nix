@@ -19,7 +19,7 @@ let
         tesseract4
 
         # VPN - from unstable because of https://github.com/NixOS/nixpkgs/issues/128114
-        pkgs-unstable.protonvpn-gui
+        protonvpn-gui
     ];
 in {
     home.packages = usefulPackages;
