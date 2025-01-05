@@ -29,7 +29,7 @@ in
         hashedPassword = "$6$rGxHh9Bkaz2AWlfk$a797yyofU8ybDiKbsPOKGuaHX5Hc/EsPkFe.n00MZQ3zsOu8J8tDbw92GwQB.LRSxcgEJ.AM2gRVJ.QBr5x2V0";
         isNormalUser = true;
         shell = pkgs.zsh;
-        extraGroups = [ "wheel" "networkmanager" "docker" "vboxusers" "wireshark" ];
+        extraGroups = [ "wheel" "networkmanager" "docker" "vboxusers" "libvirtd" "wireshark" ];
     };
 
 
@@ -65,6 +65,25 @@ in
         enable = true;
         enableExtensionPack = true;
     };
+
+    # Enable QEMU/KVM hypervisor
+    virtualisation.libvirtd = {
+        enable = true;
+        qemu = {
+            package = pkgs.qemu_kvm;
+            runAsRoot = true;
+            swtpm.enable = true;
+            ovmf = {
+            enable = true;
+            packages = [(pkgs.OVMF.override {
+                    secureBoot = true;
+                    tpmSupport = true;
+                }).fd];
+            };
+        };
+    };
+    virtualisation.spiceUSBRedirection.enable = true;
+    programs.virt-manager.enable = true;
 
     # Optimize storage
     nix.gc = {
