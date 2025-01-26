@@ -2,14 +2,14 @@
   ### Inputs ###
   inputs = {
     # Official NixOS package source (release, default)
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
 
     # Official NixOS package source (unstable, for new packages)
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # home-manager, used to manage user configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.05";
+      url = "github:nix-community/home-manager/release-24.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -68,8 +68,8 @@
           { nixpkgs.overlays = [ alacritty-theme.overlays.default ]; }
 
           # Nix User Repository (NUR)
-          nur.nixosModules.nur
-          { nixpkgs.overlays = [ nur.overlay ]; }
+          nur.modules.nixos.default
+          { nixpkgs.overlays = [ nur.overlays.default ]; }
       ];
 
       mainConfiguration = {

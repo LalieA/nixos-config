@@ -2,7 +2,7 @@
 
 {
     # Enable OpenGL as required by Hyprland
-    hardware.opengl.enable = true;
+    hardware.graphics.enable = true;
 
     services = {
         # Enable the windowing system

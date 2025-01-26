@@ -20,7 +20,7 @@
         # maltego-teeth
         metasploit
         msfpc
-        routersploit
+        # routersploit
         # set
         shellnoob
         sqlmap
@@ -278,7 +278,7 @@
         wfuzz
         whatweb
         wpscan
-        xsser
+        # xsser
         zap
 
         ## WIRELESS

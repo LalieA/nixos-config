@@ -7,7 +7,7 @@ NixOS is now my everyday system, I hope this repository will help you build your
 
 | | |
 | ------------: | :------ |
-| **NixOS release** | **24.05** |
+| **NixOS release** | **24.11** |
 | **Display Manager** | [GDM](https://wiki.archlinux.org/title/GDM) |
 | **Window Manager/Compositor** | [Hyprland](https://hyprland.org/) (Wayland) |
 | **Status bar** | [Waybar](https://github.com/Alexays/Waybar) |

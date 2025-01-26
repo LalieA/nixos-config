@@ -3,7 +3,7 @@
 {
     programs.kitty = {
         enable = true;
-        theme = "Afterglow";
+        themeFile = "Afterglow";
         shellIntegration.enableZshIntegration = true;
         settings = {
             "linux_display_server" = "wayland";

@@ -34,7 +34,7 @@
     services.printing.enable = true;
 
     # Enable sound with pipewire.
-    sound.enable = true;
+    # sound.enable = true;
     hardware.pulseaudio.enable = false;
     services.pipewire = {
         enable = true;
@@ -50,7 +50,7 @@
     security.rtkit.enable = true;
 
     # OpenCL Intel runtime
-    hardware.opengl.extraPackages = [ pkgs.intel-compute-runtime ];
+    hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];
 
     # TUXEDO Control Center - needs deprecated (and insecure) packages
     # hardware.tuxedo-control-center.enable = true;
