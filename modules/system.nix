@@ -45,8 +45,36 @@ in
     # Enable Flipper Zero support
     hardware.flipperzero.enable = true;
 
-    # Install Ankama-Launcher / Dofus
-    environment.systemPackages = [ dofus ];
+    # DisplayLink
+    services.xserver.videoDrivers = [ "displaylink" ];
+    systemd.services.dlm.wantedBy = [ "multi-user.target" ];
+    environment.variables = {
+        WLR_EVDI_RENDER_DEVICE = "/dev/dri/card1";
+    };
+
+    environment.systemPackages = with pkgs; [
+        # DisplayLink
+        displaylink
+
+        # Gaming
+        wine-staging
+        vulkan-tools
+        (lutris.override {
+            extraLibraries =  pkgs: [ cdrdao dosbox ];
+        })
+
+        # Install Ankama-Launcher / Dofus
+        dofus
+
+        # Install LibreOffice
+        libreoffice-qt
+        hunspell
+        hunspellDicts.en-us
+        hunspellDicts.fr-any
+
+        # Misc
+        btop
+    ];
 
     # Fonts
     fonts.fontconfig.enable = true;

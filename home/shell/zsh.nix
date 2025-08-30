@@ -14,7 +14,7 @@
         history.path = "${config.home.homeDirectory}/.zshistory";
 
         historySubstringSearch.enable = true;
-        initExtra = ''
+        initContent = ''
             # search history based on what's typed in the prompt
             autoload -U history-search-end
             zle -N history-beginning-search-backward-end history-search-end

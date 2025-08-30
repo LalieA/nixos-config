@@ -156,7 +156,7 @@
         # keimpx
         # maskprocessor
         # multiforcer
-        ncrack
+        # ncrack
         # oclgausscrack
         # ophcrack
         # pack

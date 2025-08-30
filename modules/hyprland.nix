@@ -1,9 +1,6 @@
 { pkgs, ... }:
 
 {
-    # Enable OpenGL as required by Hyprland
-    hardware.graphics.enable = true;
-
     services = {
         # Enable the windowing system
         xserver = {
@@ -47,6 +44,9 @@
 
         # SwayIDLE (idle manager)
         swayidle
+
+        # xrdb (configure xorg apps)
+        xorg.xrdb
 
         # PulseAudio
         pulseaudio

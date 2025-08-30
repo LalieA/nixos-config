@@ -35,7 +35,7 @@
 
     # Enable sound with pipewire.
     # sound.enable = true;
-    hardware.pulseaudio.enable = false;
+    services.pulseaudio.enable = false;
     services.pipewire = {
         enable = true;
         alsa.enable = true;
@@ -49,8 +49,21 @@
     };
     security.rtkit.enable = true;
 
-    # OpenCL Intel runtime
-    hardware.graphics.extraPackages = [ pkgs.intel-compute-runtime ];
+    hardware.graphics = {
+        enable = true;
+        enable32Bit = true;
+        extraPackages = with pkgs; [
+            intel-compute-runtime
+            intel-media-driver
+            vpl-gpu-rt
+            libvdpau-va-gl
+            # mesa.drivers
+            rocmPackages.clr
+        ];
+        extraPackages32 = with pkgs; [
+            intel-media-driver
+        ];
+    };
 
     # TUXEDO Control Center - needs deprecated (and insecure) packages
     # hardware.tuxedo-control-center.enable = true;

@@ -1,20 +1,14 @@
-{ pkgs, inputs, ... }:
-let
-    anyrunPkgs = inputs.anyrun.packages.${pkgs.system};
-in
-{
-    imports = [
-        inputs.anyrun.homeManagerModules.default
-    ];
+{ pkgs, ... }:
 
+{
     programs.anyrun = {
         enable = true;
         config = {
-            plugins = with anyrunPkgs; [
-                applications
-                kidex
-                rink
-                translate
+            plugins = [
+                "${pkgs.anyrun}/lib/libapplications.so"
+                "${pkgs.anyrun}/lib/libkidex.so"
+                "${pkgs.anyrun}/lib/librink.so"
+                "${pkgs.anyrun}/lib/libtranslate.so"
             ];
             closeOnClick = true;
             layer = "overlay";

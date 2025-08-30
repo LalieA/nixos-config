@@ -1,17 +1,18 @@
 { pkgs, ... }:
 
 let
-  name = "ankama-launcher";
+  pname = "ankama-launcher";
+  version = "1.0";
   src = pkgs.fetchurl {
     url = "https://launcher.cdn.ankama.com/installers/production/Dofus-Setup-x86_64.AppImage";
-    sha256 = "06yri31m2k47xhbhalz16mbigmpxrl8dy3k0si8l9mkdyhpa0wpj"; # Change for the sha256 you get after running nix-prefetch-url https://launcher.cdn.ankama.com/installers/production/Dofus-Setup-x86_64.AppImage
+    hash = "sha256-POYqlgxHBo1vLqe5qCebw1oi4TMNykk43ruE5A3A+v4="; # Change for the sha256 you get after running nix-prefetch-url https://launcher.cdn.ankama.com/installers/production/Dofus-Setup-x86_64.AppImage
  };
- appimageContents = pkgs.appimageTools.extractType2 { inherit name src; };
+ appimageContents = pkgs.appimageTools.extractType2 { inherit pname version src; };
 
 in
 
 pkgs.appimageTools.wrapType2 {
-  inherit name src;
+  inherit pname version src;
 
   extraInstallCommands = ''
     install -m 444 -D ${appimageContents}/zaap.desktop $out/share/applications/ankama-launcher.desktop
@@ -20,6 +21,6 @@ pkgs.appimageTools.wrapType2 {
   '';
 
   extraPkgs = pkgs: [
-      pkgs.wine-staging
+    pkgs.wine-staging
   ];
 }

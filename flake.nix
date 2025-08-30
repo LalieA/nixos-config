@@ -2,14 +2,14 @@
   ### Inputs ###
   inputs = {
     # Official NixOS package source (release, default)
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
 
     # Official NixOS package source (unstable, for new packages)
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # home-manager, used to manage user configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-24.11";
+      url = "github:nix-community/home-manager/release-25.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -30,12 +30,6 @@
 
     # Nix User Repository (NUR)
     nur.url = "github:nix-community/NUR";
-
-    # anyrun
-    anyrun = {
-      url = "github:Kirottu/anyrun";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
 
     # TUXEDO Control Center
     # tuxedo-nixos = {
