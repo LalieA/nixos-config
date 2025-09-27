@@ -45,6 +45,10 @@ in
     # Enable Flipper Zero support
     hardware.flipperzero.enable = true;
 
+    # Enable QMK & OpenRGB keyboards support
+    hardware.keyboard.qmk.enable = true;
+    services.hardware.openrgb.enable = true;
+
     # DisplayLink
     services.xserver.videoDrivers = [ "displaylink" ];
     systemd.services.dlm.wantedBy = [ "multi-user.target" ];
@@ -53,6 +57,10 @@ in
     };
 
     environment.systemPackages = with pkgs; [
+        # QMK, OpenRGB
+        qmk
+        openrgb
+
         # DisplayLink
         displaylink
 
