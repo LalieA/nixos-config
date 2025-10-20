@@ -82,6 +82,7 @@ in
 
         # Misc
         btop
+        ungoogled-chromium
     ];
 
     # Fonts

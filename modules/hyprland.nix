@@ -1,4 +1,4 @@
-{ pkgs, ... }:
+{ pkgs, config, ... }:
 
 {
     services = {
@@ -67,7 +67,16 @@
     # Enable GTK and use XDG portal for more compatibility
     xdg.portal = {
         enable = true;
-        extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+        extraPortals = with pkgs; [
+            xdg-desktop-portal-hyprland
+            xdg-desktop-portal-gtk
+        ];
+        configPackages = [ config.programs.hyprland.package ];
+        config.hyprland = {
+            default = [ "hyprland" "gtk" ];
+            "org.freedesktop.impl.portal.FileChooser" = "gtk";
+            "org.freedesktop.impl.portal.Print" = "gtk";
+        };
     };
 
     # Allow swaylock to unlock user session
