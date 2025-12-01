@@ -21,6 +21,7 @@ let
         # network
         networkmanagerapplet
         dig
+        sshpass
 
         # sound
         pavucontrol

@@ -122,6 +122,9 @@ in
     virtualisation.spiceUSBRedirection.enable = true;
     programs.virt-manager.enable = true;
 
+    # Enable Docker
+    virtualisation.docker.enable = true;
+
     # Optimize storage
     nix.gc = {
         automatic = true;
