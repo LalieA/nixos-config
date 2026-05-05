@@ -3,19 +3,19 @@
 {
     programs.git = {
         enable = true;
-        userName = "LalieA";
-        userEmail = "83229713+LalieA@users.noreply.github.com";
-
-        aliases = {
-            co = "checkout";
-            br = "branch";
-            ci = "commit";
-            st = "status";
-            rb = "rebase";
-            log = "log --all --graph --oneline --decorate";
-        };
-
-        extraConfig = {
+        settings = {
+            user = {
+                name = "LalieA";
+                email = "83229713+LalieA@users.noreply.github.com";
+            };
+            alias = {
+                co = "checkout";
+                br = "branch";
+                ci = "commit";
+                st = "status";
+                rb = "rebase";
+                log = "log --all --graph --oneline --decorate";
+            };
             core = {
                 editor = "code --wait";
             };

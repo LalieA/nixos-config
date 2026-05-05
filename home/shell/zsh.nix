@@ -9,7 +9,7 @@
         };
 
         autocd = true;
-        dotDir = ".config/zsh";
+        dotDir = "${config.home.homeDirectory}/.config/zsh";
         history.share = true;
         history.path = "${config.home.homeDirectory}/.zshistory";
 

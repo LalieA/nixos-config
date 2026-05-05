@@ -7,13 +7,15 @@
             enable = true;
             xkb.variant = "azerty";
             xkb.layout = "fr";
+        };
+        displayManager = {
+            defaultSession = "hyprland";
             # Enable the GNOME Display Manager
-            displayManager.gdm = {
+            gdm = {
                 enable = true;
                 wayland = true;
             };
         };
-        displayManager.defaultSession = "hyprland";
 
         # Enable dbus
         dbus.enable = true;

@@ -180,5 +180,5 @@
     # Enable GNOME Keyring (required by programs like ProtonVPN)
     services.gnome.gnome-keyring.enable = true;
 
-    system.stateVersion = "23.11";
+    system.stateVersion = "25.11";
 }

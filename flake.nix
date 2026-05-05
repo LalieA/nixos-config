@@ -2,14 +2,14 @@
   ### Inputs ###
   inputs = {
     # Official NixOS package source (release, default)
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.11";
 
     # Official NixOS package source (unstable, for new packages)
     nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
 
     # home-manager, used to manage user configuration
     home-manager = {
-      url = "github:nix-community/home-manager/release-25.05";
+      url = "github:nix-community/home-manager/release-25.11";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -19,12 +19,6 @@
     # VSCode extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
-    # alacritty themes
-    alacritty-theme = {
-      url = "github:alexghr/alacritty-theme.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
@@ -46,7 +40,6 @@
     home-manager,
     impermanence,
     nix-vscode-extensions,
-    alacritty-theme,
     nur,
     # tuxedo-nixos,
     ...}@inputs: {
@@ -58,9 +51,6 @@
       };
 
       commonModules = [
-          # alacritty themes
-          { nixpkgs.overlays = [ alacritty-theme.overlays.default ]; }
-
           # Nix User Repository (NUR)
           nur.modules.nixos.default
           { nixpkgs.overlays = [ nur.overlays.default ]; }

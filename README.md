@@ -7,7 +7,7 @@ NixOS is now my everyday system, I hope this repository will help you build your
 
 | | |
 | ------------: | :------ |
-| **NixOS release** | **25.05** |
+| **NixOS release** | **25.11** |
 | **Display Manager** | [GDM](https://wiki.archlinux.org/title/GDM) |
 | **Window Manager/Compositor** | [Hyprland](https://hyprland.org/) (Wayland) |
 | **Status bar** | [Waybar](https://github.com/Alexays/Waybar) |
@@ -18,7 +18,7 @@ NixOS is now my everyday system, I hope this repository will help you build your
 | **Logout & Power Menu** | [wlogout](https://github.com/ArtsyMacaw/wlogout) |
 | **IDLE Manager** | [swayidle](https://github.com/swaywm/swayidle) |
 | **Network Manager** | [NetworkManager](https://wiki.archlinux.org/title/NetworkManager) |
-| **Terminal Emulators** | [kitty](https://sw.kovidgoyal.net/kitty/), [Alacritty](https://github.com/alacritty/alacritty) |
+| **Terminal Emulators** | [kitty](https://sw.kovidgoyal.net/kitty/) |
 | **Shell** | [zsh](https://wiki.archlinux.org/title/zsh) + [powerlevel10k](https://github.com/romkatv/powerlevel10k) |
 | **Editor** | [Visual Studio Code](https://code.visualstudio.com/) |
 | **File Browser** | [PCManFM](https://wiki.archlinux.org/title/PCManFM) |
