@@ -50,16 +50,9 @@
         # xrdb (configure xorg apps)
         xorg.xrdb
 
-        # PulseAudio
-        pulseaudio
-        wireplumber
-
         # wayland support
         qt5.qtwayland
         qt6.qtwayland
-
-        # screen
-        brightnessctl
 
         # inputs
         libinput
@@ -83,24 +76,6 @@
 
     # Allow swaylock to unlock user session
     security.pam.services.swaylock = {};
-
-    # Auto-mount USB drives
-    services.gvfs.enable = true;
-    services.udisks2.enable = true;
-
-    # Use docker in rootless mode
-    virtualisation.docker.rootless = {
-        enable = true;
-        setSocketVariable = true;
-    };
-
-    # Use Bluetooth headset buttons to control media player
-    systemd.user.services.mpris-proxy = {
-        description = "Mpris proxy";
-        after = [ "network.target" "sound.target" ];
-        wantedBy = [ "default.target" ];
-        serviceConfig.ExecStart = "${pkgs.bluez}/bin/mpris-proxy";
-    };
 
     # Run Electron-based apps under Wayland
     environment.sessionVariables.NIXOS_OZONE_WL = "1";

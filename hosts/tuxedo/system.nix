@@ -1,9 +1,15 @@
 { pkgs, ...}:
 let
-    dofus = import ./misc/ankama-launcher.nix {inherit pkgs;};
+    dofus = import ../../modules/misc/ankama-launcher.nix {inherit pkgs;};
 in
 {
-    ## SYSTEM CONFIGURATION
+    ## BOOT
+    boot.loader = {
+        systemd-boot.enable = true;
+        efi.canTouchEfiVariables = true;
+    };
+
+    ## SYSTEM
     # Time zone
     time.timeZone = "Europe/Paris";
 
@@ -29,23 +35,51 @@ in
         hashedPassword = "$6$rGxHh9Bkaz2AWlfk$a797yyofU8ybDiKbsPOKGuaHX5Hc/EsPkFe.n00MZQ3zsOu8J8tDbw92GwQB.LRSxcgEJ.AM2gRVJ.QBr5x2V0";
         isNormalUser = true;
         shell = pkgs.zsh;
-        extraGroups = [ "wheel" "networkmanager" "docker" "vboxusers" "libvirtd" "wireshark" ];
+        extraGroups = [ "wheel" "networkmanager" "wireshark" ];
     };
 
 
     ## NETWORK
-    # Disable IPv6
-    networking.enableIPv6  = false;
+    networking = {
+        hostName = "nixos";
+        enableIPv6 = false; # disable IPv6
+        networkmanager = {
+            enable = true;
+            wifi.scanRandMacAddress = true;
+            wifi.macAddress = "random";
+            ethernet.macAddress = "random";
+            plugins = with pkgs; [
+                networkmanager-openconnect
+            ];
+        };
+    };
 
 
-    ## MISC
-    # Allow unfree packages
-    nixpkgs.config.allowUnfree = true;
+    ## CONNECTIVITY
+    # CUPS
+    services.printing.enable = true;
 
-    # Enable Flipper Zero support
+
+    ## SECURITY
+    # Enable GNOME Keyring (required by programs like ProtonVPN)
+    services.gnome.gnome-keyring.enable = true;
+
+
+    ## MISC OPTIONS
+    # Tuxedo hardware
+    hardware.tuxedo-rs = {
+        enable = true;
+        tailor-gui.enable = true;
+    };
+
+    # Auto-mount USB drives
+    services.gvfs.enable = true;
+    services.udisks2.enable = true;
+
+    # Flipper Zero support
     hardware.flipperzero.enable = true;
 
-    # Enable QMK & OpenRGB keyboards support
+    # QMK & OpenRGB keyboards support
     hardware.keyboard.qmk.enable = true;
     services.hardware.openrgb.enable = true;
 
@@ -56,7 +90,21 @@ in
         WLR_EVDI_RENDER_DEVICE = "/dev/dri/card1";
     };
 
+    # Fonts
+    fonts.fontconfig.enable = true;
+    fonts.packages = with pkgs; [
+        meslo-lgs-nf
+    ];
+
+    # Wireshark
+    programs.wireshark.enable = true;
+
+
+    ## MISC PACKAGES
     environment.systemPackages = with pkgs; [
+        # Brightness
+        brightnessctl
+
         # QMK, OpenRGB
         qmk
         openrgb
@@ -71,70 +119,31 @@ in
             extraLibraries =  pkgs: [ cdrdao dosbox ];
         })
 
-        # Install Ankama-Launcher / Dofus
+        # Ankama-Launcher / Dofus
         dofus
 
-        # Install LibreOffice
+        # LibreOffice
         libreoffice-qt
         hunspell
         hunspellDicts.en-us
         hunspellDicts.fr-any
 
-        # Misc
+        # System
         btop
         ungoogled-chromium
         openconnect
         smartmontools
     ];
 
-    # Fonts
-    fonts.fontconfig.enable = true;
-    fonts.packages = with pkgs; [
-        meslo-lgs-nf
-    ];
 
-    # Enable Wireshark
-    programs.wireshark.enable = true;
-
-    # Enable GNOME Keyring (required by programs like ProtonVPN)
-    services.gnome.gnome-keyring.enable = true;
-
-    # Enable VirtualBox
-    virtualisation.virtualbox.host = {
-        enable = true;
-        enableExtensionPack = true;
-    };
-
-    # Enable QEMU/KVM hypervisor
-    virtualisation.libvirtd = {
-        enable = true;
-        qemu = {
-            package = pkgs.qemu_kvm;
-            runAsRoot = true;
-            swtpm.enable = true;
-            # ovmf = {
-            # enable = true;
-            # packages = [(pkgs.OVMF.override {
-            #         secureBoot = true;
-            #         tpmSupport = true;
-            #     }).fd];
-            # };
-        };
-    };
-    virtualisation.spiceUSBRedirection.enable = true;
-    programs.virt-manager.enable = true;
-
-    # Enable Docker
-    virtualisation.docker.enable = true;
-
-    # Optimize storage
+    ## NIX
+    nixpkgs.config.allowUnfree = true;
     nix.gc = {
         automatic = true;
         dates = "weekly";
         options = "--delete-older-than 1w";
     };
     nix.settings = {
-        # Enable flakes globally
         experimental-features = ["nix-command" "flakes"];
         auto-optimise-store = true;
     };
