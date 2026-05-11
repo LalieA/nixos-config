@@ -28,6 +28,10 @@
         };
     };
 
+    environment.systemPackages = with pkgs; [
+        docker
+    ];
+
     # Add user to extra groups
     users.users.lalie.extraGroups = [ "docker" "vboxusers" "libvirtd" ];
 }

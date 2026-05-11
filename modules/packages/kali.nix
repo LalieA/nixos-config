@@ -1,8 +1,7 @@
 { pkgs, ... }:
-
-{
-    # https://github.com/NixOS/nixpkgs/issues/81418#issue-573452170
-    environment.systemPackages = with pkgs; [
+let
+    # See https://github.com/NixOS/nixpkgs/issues/81418#issue-573452170
+    kaliPackages = with pkgs; [
         ## EXPLOITATION
 
         # armitage
@@ -20,8 +19,8 @@
         # maltego-teeth
         metasploit
         msfpc
-        # routersploit
-        # set
+        routersploit
+        social-engineer-toolkit
         shellnoob
         sqlmap
         thc-ipv6
@@ -30,11 +29,11 @@
         ## FORENSICS
 
         # autopsy
-        # binwalk-full
-        # bulk-extractor
+        binwalk
+        bulk_extractor
         capstone
         # cuckoo
-        # dc3dd
+        dc3dd
         ddrescue
         ddrescueview
         # dff
@@ -42,23 +41,23 @@
         # dumpzilla
         ext4magic
         extundelete
-        # galleta
+        galleta
         ghidra
         # guymager
         p0f
         pdf-parser
-        # pdfid
+        pdfid
         # pdgmail
         # peepdf
-        # regripper
+        regripper
         sleuthkit
-        # volatility
+        volatility3
         # xplico
 
         # HARDWARE
         apktool
         arduino
-        # bytecode-viewer
+        bytecode-viewer
         dex2jar
         enjarify
         # sakis3g
@@ -74,14 +73,14 @@
         braa
         # cdpsnarf
         # copy-router-config
-        # dmitry
+        dmitry
         # dnmap
         dnsenum
         # dnsmap
         dnsrecon
         # dotdotpwn
         enum4linux
-        # eyewitness
+        eyewitness
         faraday-cli
         fierce
         firewalk
@@ -93,7 +92,7 @@
         # ident-user-enum
         # lbd
         masscan
-        # nbtscan-unixwiz
+        nbtscan
         nmap
         ntopng
         # osrframework
@@ -104,7 +103,7 @@
         # sparta
         # sslcaudit
         sslsplit
-        # sslstrip
+        sslstrip
         # sslyze
         # sublist3r
         theharvester
@@ -156,7 +155,7 @@
         # keimpx
         # maskprocessor
         # multiforcer
-        # ncrack
+        ncrack
         # oclgausscrack
         # ophcrack
         # pack
@@ -215,14 +214,14 @@
 
         ## STRESS TESTING
 
-        # dhcpig
+        dhcpig
         # funkload
         # iaxflood
         # inundator
         # inviteflood
         # ipv6-toolkit
         # mdk3
-        reaverwps
+        # reaverwps
         reaverwps-t6x
         # rtpflood
         slowhttptest
@@ -233,7 +232,7 @@
         ## VULNERABILITY ANALYSIS
 
         # bbqsql
-        # bed
+        bed
         doona
         # hexorbase
         # jsql-injection
@@ -246,7 +245,7 @@
         # sqlninja
         # sqlsus
         # tnscmd10g
-        # unix-privesc-check
+        unix-privesc-check
         vulnix
 
         ## WEB APPLICATIONS
@@ -258,7 +257,7 @@
         davtest
         # deblaze
         dirb
-        # dirbuster
+        dirbuster
         # fimap
         gobuster
         # grabber
@@ -301,7 +300,7 @@
         # hostapd-wpe
         kalibrate-hackrf
         kalibrate-rtl
-        # killerbee
+        killerbee
         kismet
         mfcuk
         mfoc
@@ -311,7 +310,7 @@
         # pyrit
         redfang
         # rtlsdr-scanner
-        # spooftooph
+        spooftooph
         # wifiphisher
         # wifitap
         wifite2
@@ -320,4 +319,7 @@
 
         radare2
     ];
+in
+{
+    home.packages = kaliPackages;
 }

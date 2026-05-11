@@ -1,38 +1,31 @@
 { pkgs, ... }:
 let
     basePackages = with pkgs; [
-        # archives
+        ## archives
         unzip
         zip
         rar
 
-        # clipboard & screenshot
-        wl-clipboard
-        grim
-        slurp
-        swappy
-
-        # files
-        pcmanfm
+        ## files
         file
         tree
         exiftool
 
-        # network
-        networkmanagerapplet
+        ## network
         dig
         sshpass
-
-        # sound
-        pavucontrol
+        openvpn
+        openconnect
 
         # storage
         gparted
         gptfdisk
         testdisk
+        smartmontools
 
         # system
         htop
+        btop
         dmidecode
         ethtool
         lm_sensors
@@ -46,6 +39,7 @@ let
         # web
         curl
         wget
+        ungoogled-chromium
     ];
 in {
     home.packages = basePackages;

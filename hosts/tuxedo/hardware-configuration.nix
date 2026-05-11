@@ -8,11 +8,14 @@
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
 
+  ## ARCH
   nixpkgs.hostPlatform = "x86_64-linux";
 
+  ## CPU
   powerManagement.cpuFreqGovernor = "powersave";
   hardware.cpu.intel.updateMicrocode = config.hardware.enableRedistributableFirmware;
 
+  ## KERNEL MODULES
   boot = {
       initrd = {
           availableKernelModules = [ "xhci_pci" "thunderbolt" "nvme" "usb_storage" "sd_mod" ];
@@ -22,6 +25,7 @@
       extraModulePackages = [ ];
   };
 
+  ## FILESYSTEM
   fileSystems."/" =
     { device = "/dev/disk/by-uuid/905fb458-a001-4eed-86c1-426fe8ba2f65";
       fsType = "ext4";

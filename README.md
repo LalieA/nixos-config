@@ -9,24 +9,11 @@ NixOS is now my everyday system, I hope this repository will help you build your
 | ------------: | :------ |
 | **NixOS release** | **25.11** |
 | **Display Manager** | [GDM](https://wiki.archlinux.org/title/GDM) |
-| **Window Manager/Compositor** | [Hyprland](https://hyprland.org/) (Wayland) |
-| **Status bar** | [Waybar](https://github.com/Alexays/Waybar) |
-| **Wallpaper Manager** | [hyprpaper](https://github.com/hyprwm/hyprpaper) |
-| **App Launcher**    | [anyrun](https://github.com/Kirottu/anyrun) |
-| **Notification Center** | [swaync](https://github.com/ErikReider/SwayNotificationCenter) |
-| **Screen Locker** | [swaylock-effects](https://github.com/mortie/swaylock-effects) |
-| **Logout & Power Menu** | [wlogout](https://github.com/ArtsyMacaw/wlogout) |
-| **IDLE Manager** | [swayidle](https://github.com/swaywm/swayidle) |
-| **Network Manager** | [NetworkManager](https://wiki.archlinux.org/title/NetworkManager) |
+| **Window Manager/Compositor** | [Niri](https://niri-wm.github.io/niri/) (Wayland) |
+| **Desktop** | [Dank Material Shell](https://danklinux.com/) |
 | **Terminal Emulators** | [kitty](https://sw.kovidgoyal.net/kitty/) |
 | **Shell** | [zsh](https://wiki.archlinux.org/title/zsh) + [powerlevel10k](https://github.com/romkatv/powerlevel10k) |
-| **Editor** | [Visual Studio Code](https://code.visualstudio.com/) |
-| **File Browser** | [PCManFM](https://wiki.archlinux.org/title/PCManFM) |
-| **Snapshot & Editing** | [swappy](https://github.com/jtheoof/swappy) |
-| **Miscellaneous** | [TUXEDO Control Center](https://www.tuxedocomputers.com/en/TUXEDO-Control-Center.tuxedo), NetworkManager & Blueman applets, git, ...|
 
-## Live configuration
-Work in progress
 
 ## How to install and how to manage system's configuration with git
 Git handles very well text files such as NixOS configuration ones; I strongly suggest you to use it to keep track of the changes you made and for easy rollback.

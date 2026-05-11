@@ -2,12 +2,7 @@
 
 {
     imports = [
-        ./anyrun
-        ./hyprland
-        ./swayidle
-        ./swaylock
-        ./swaync
-        ./waybar
-        ./wlogout
+        ./niri
+        ./dank-material-shell
     ];
 }

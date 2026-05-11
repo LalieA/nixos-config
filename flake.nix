@@ -16,20 +16,38 @@
     # Impermanence, used to define persistent files for temporary rootfs
     impermanence.url = "github:nix-community/impermanence";
 
+    # Nix User Repository (NUR)
+    nur.url = "github:nix-community/NUR";
+
     # VSCode extensions
     nix-vscode-extensions = {
       url = "github:nix-community/nix-vscode-extensions";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Nix User Repository (NUR)
-    nur.url = "github:nix-community/NUR";
+    # Niri
+    niri = {
+      url = "github:sodiboo/niri-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
-    # TUXEDO Control Center
-    # tuxedo-nixos = {
-    #   url = "github:blitz/tuxedo-nixos";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    # Dank-Material-Shell
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    # Dank-Material-Shell plugins
+    dms-plugins = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
+
+    # Dank Search
+    danksearch = {
+      url = "github:AvengeMedia/danksearch";
+      inputs.nixpkgs.follows = "nixpkgs-unstable";
+    };
   };
 
   ### Outputs ###
@@ -39,9 +57,8 @@
     nixpkgs-unstable,
     home-manager,
     impermanence,
-    nix-vscode-extensions,
     nur,
-    # tuxedo-nixos,
+    nix-vscode-extensions,
     ...}@inputs: {
     nixosConfigurations = let
       system = "x86_64-linux";
@@ -57,7 +74,7 @@
       ];
 
       mainConfiguration = {
-        inherit system;
+        system = "x86_64-linux";
         modules = commonModules ++ [
           # NixOS host
           ./hosts/tuxedo
@@ -69,9 +86,6 @@
             home-manager.users.lalie = import ./home;
             home-manager.extraSpecialArgs = { inherit inputs; inherit pkgs-unstable; };
           }
-
-          # TUXEDO Control Center
-          # tuxedo-nixos.nixosModules.default
         ];
       };
 

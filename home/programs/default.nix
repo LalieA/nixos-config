@@ -2,10 +2,6 @@
 
 {
     imports = [
-        ./packages/base.nix
-        ./packages/useful.nix
-        ./packages/dev.nix
-        ./packages/misc.nix
         ./direnv
         ./firefox
         ./git

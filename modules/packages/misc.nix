@@ -1,11 +1,10 @@
 { pkgs, ... }:
 let
     miscPackages = with pkgs; [
-        # productivity
-        obsidian
+        # Productivity
         zotero
 
-        # 3d
+        # 3D
         sweethome3d.application
         sweethome3d.textures-editor
         sweethome3d.furniture-editor

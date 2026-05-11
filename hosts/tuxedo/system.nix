@@ -1,7 +1,5 @@
 { pkgs, ...}:
-let
-    dofus = import ../../modules/misc/ankama-launcher.nix {inherit pkgs;};
-in
+
 {
     ## BOOT
     boot.loader = {
@@ -49,6 +47,7 @@ in
             wifi.macAddress = "random";
             ethernet.macAddress = "random";
             plugins = with pkgs; [
+                networkmanager-openvpn
                 networkmanager-openconnect
             ];
         };
@@ -59,11 +58,16 @@ in
     # CUPS
     services.printing.enable = true;
 
+    # BLUETOOTH
+    services.blueman.enable = false;
+
+    # POWER
+    services.upower.enable = true;
+    services.power-profiles-daemon.enable = true;
 
     ## SECURITY
     # Enable GNOME Keyring (required by programs like ProtonVPN)
     services.gnome.gnome-keyring.enable = true;
-
 
     ## MISC OPTIONS
     # Tuxedo hardware
@@ -100,49 +104,19 @@ in
     programs.wireshark.enable = true;
 
 
-    ## MISC PACKAGES
-    environment.systemPackages = with pkgs; [
-        # Brightness
-        brightnessctl
-
-        # QMK, OpenRGB
-        qmk
-        openrgb
-
-        # DisplayLink
-        displaylink
-
-        # Gaming
-        wine-staging
-        vulkan-tools
-        (lutris.override {
-            extraLibraries =  pkgs: [ cdrdao dosbox ];
-        })
-
-        # Ankama-Launcher / Dofus
-        dofus
-
-        # LibreOffice
-        libreoffice-qt
-        hunspell
-        hunspellDicts.en-us
-        hunspellDicts.fr-any
-
-        # System
-        btop
-        ungoogled-chromium
-        openconnect
-        smartmontools
-    ];
+    ## MISC SYSTEM PACKAGES
+    environment.systemPackages = with pkgs; [ ];
 
 
     ## NIX
     nixpkgs.config.allowUnfree = true;
+
     nix.gc = {
         automatic = true;
         dates = "weekly";
         options = "--delete-older-than 1w";
     };
+
     nix.settings = {
         experimental-features = ["nix-command" "flakes"];
         auto-optimise-store = true;
