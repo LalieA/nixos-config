@@ -23,6 +23,12 @@
       inputs.flake-utils.follows = "flake-utils";
     };
 
+    # Disko, for declarative disk partitionning
+    disko = {
+      url = "github:nix-community/disko";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Impermanence, used to define persistent files for temporary rootfs
     impermanence = {
       url = "github:nix-community/impermanence";
@@ -67,7 +73,7 @@
   };
 
   ### Outputs ###
-  outputs = {self, flake-utils, nixpkgs, nixpkgs-unstable, home-manager, colmena, impermanence, nur, ...}: {
+  outputs = {self, flake-utils, nixpkgs, nixpkgs-unstable, home-manager, colmena, disko, impermanence, nur, ...}: {
     colmena = import ./hive.nix self.inputs;
 
     # BUILD MINIMAL ISO IMAGE:          nix build .#nixosConfigurations.iso.config.system.build.isoImage
@@ -75,12 +81,29 @@
     # DEPLOY FIRST TIME:                nixos-anywhere --flake .#<config-name> root@<machine-ip>
     # DEPLOY REGULAR:                   colmena apply --impure --reboot --on <config-name>
 
+    # If the target do not have internet access, and nixos-anywhere fails trying to get kexec tarball, download it locally:
+    #   nix build github:nix-community/nixos-images#packages.x86_64-linux.kexec-installer-nixos-stable-noninteractive
+    # then specify tarball location: nixos-anywhere --flake .#<config-name> root@<machine-ip> --kexec ./result/nixos-kexec-*.tar.gz --build-on local
+
     nixosConfigurations = (colmena.lib.makeHive self.outputs.colmena).nodes // {
       "iso" = nixpkgs.lib.nixosSystem {
         system = "x86_64-linux";
         modules = ([
           ./hosts/live-minimal
           "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-base.nix"
+          disko.nixosModules.disko
+          ({
+            # Set the nix store size enough to handle the "real" NixOS configuration to be copied on the target.
+            # Can be seen through: nix path-info -Sh .#nixosConfigurations.<computer-hostname>.config.system.build.toplevel
+            #
+            # /!\
+            # As full closure size can be high (~30GB) and devices may not have this amount of RAM nor storage available on the live USB stick,
+            # I suggest to make this partition large enough for an almost Disko-only configuration to create initial disk partitionning (deployed with nixos-anywhere),
+            # then boot that new system from target's disk, and continue deploying the entire NixOS configuration with Colmena.
+            boot.postBootCommands = ''
+              mount -o remount,size=5G /nix/.rw-store || true
+            '';
+          })
         ]);
       };
     };

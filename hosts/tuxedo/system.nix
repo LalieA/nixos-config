@@ -39,7 +39,6 @@
 
     ## NETWORK
     networking = {
-        hostName = "nixos";
         enableIPv6 = false; # disable IPv6
         networkmanager = {
             enable = true;
@@ -49,6 +48,28 @@
             plugins = with pkgs; [
                 networkmanager-openvpn
                 networkmanager-openconnect
+            ];
+        };
+    };
+
+    services.kea.dhcp4 = {
+        enable = true;
+        settings = {
+            interfaces-config.interfaces = [ "enp0s20f0u4u3" ];
+            subnet4 = [
+                {
+                    id = 1;
+                    subnet = "50.50.50.0/24";
+                    pools = [
+                        { pool = "50.50.50.1 - 50.50.50.10"; }
+                    ];
+                    option-data = [
+                        {
+                            name = "routers";
+                            data = "50.50.50.1";
+                        }
+                    ];
+                }
             ];
         };
     };

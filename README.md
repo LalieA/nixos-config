@@ -181,6 +181,13 @@ sudo dd if=./result/iso/nixos-live-minimal.iso of=/dev/sdX bs=1M status=progress
 By setting the correct SSH public key for remote connection in `./hosts/live-minimal/system.nix`, you should be able to install a complete NixOS configuration using [nixos-anywhere](https://github.com/nix-community/nixos-anywhere) and tools like [Disko](https://github.com/nix-community/disko) for disk paritioning, then perform further updates through Colmena as usual.
 This step replaces the need for a classical NixOS installation that can be time-consuming for some needs.
 
+1. On target machine, boot from USB key, BIOS or UEFI as preferred
+2. Give both machines an IP address from the same subnet: `ip a add <ip_main> dev enp0s20f0u4u3` (main PC), `ip a add <ip_target> dev eno1` (target)
+3. Ping target from main PC: `ping <ip_target>`
+4. SSH from main PC to target: `ssh root@<ip_target>`
+5. Run nixos-anywhere to partition target disks with Disko layout: `nixos-anywhere -- --flake .#<computer-hostname> root@<ip_target>`
+6. Deply further updates with Colmena: `colmena apply --on <computer-hostname>`
+
 
 ## What has been tested
 
