@@ -76,7 +76,7 @@ in
     systemd.user.services.dms.serviceConfig.ExecStartPre = initScript;
 
     programs.dsearch = {
-        enable = true;
+        enable = false;
         config = {
             index_path = "~/.cache/danksearch/index";
             max_file_bytes = 2097152; # 2MB

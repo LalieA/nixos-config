@@ -38,8 +38,16 @@
 
 
     ## NETWORK
+    networking.firewall.allowedUDPPorts = [ 67 68 ];
     networking = {
         enableIPv6 = false; # disable IPv6
+        interfaces.enp0s20f0u4u3 = {
+            useDHCP = false;
+            ipv4.addresses = [{
+                address = "50.50.50.1";
+                prefixLength = 24;
+            }];
+        };
         networkmanager = {
             enable = true;
             wifi.scanRandMacAddress = true;
@@ -52,27 +60,27 @@
         };
     };
 
-    services.kea.dhcp4 = {
-        enable = true;
-        settings = {
-            interfaces-config.interfaces = [ "enp0s20f0u4u3" ];
-            subnet4 = [
-                {
-                    id = 1;
-                    subnet = "50.50.50.0/24";
-                    pools = [
-                        { pool = "50.50.50.1 - 50.50.50.10"; }
-                    ];
-                    option-data = [
-                        {
-                            name = "routers";
-                            data = "50.50.50.1";
-                        }
-                    ];
-                }
-            ];
-        };
-    };
+    # services.kea.dhcp4 = {
+    #     enable = true;
+    #     settings = {
+    #         interfaces-config.interfaces = [ "enp0s20f0u4u3" ];
+    #         subnet4 = [
+    #             {
+    #                 id = 1;
+    #                 subnet = "50.50.50.0/24";
+    #                 pools = [
+    #                     { pool = "50.50.50.1 - 50.50.50.10"; }
+    #                 ];
+    #                 # option-data = [
+    #                 #     {
+    #                 #         name = "routers";
+    #                 #         data = "50.50.50.1";
+    #                 #     }
+    #                 # ];
+    #             }
+    #         ];
+    #     };
+    # };
 
 
     ## CONNECTIVITY

@@ -145,7 +145,7 @@
             ## Overrided by DMS
             layout = {
                 gaps = 1;
-                center-focused-column = "always";
+                center-focused-column = "on-overflow";
                 always-center-single-column = true;
                 empty-workspace-above-first = true;
                 default-column-width = { proportion = 0.49; };

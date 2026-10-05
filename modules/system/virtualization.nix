@@ -14,6 +14,7 @@
             package = pkgs.qemu_kvm;
             runAsRoot = true;
             swtpm.enable = true;
+            vhostUserPackages = with pkgs; [ virtiofsd ];
         };
     };
     virtualisation.spiceUSBRedirection.enable = lib.mkDefault true;
