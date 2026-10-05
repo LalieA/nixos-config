@@ -17,7 +17,7 @@
     home = {
         username = "lalie";
         homeDirectory = "/home/lalie";
-        stateVersion = "25.11";
+        stateVersion = "26.05";
     };
 
     # Use XDG user directories

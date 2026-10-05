@@ -8,7 +8,7 @@ NixOS is now my everyday system, I hope this repository will help you build your
 
 | | |
 | ------------: | :------ |
-| **NixOS release** | **25.11** |
+| **NixOS release** | **26.05** |
 | **Display Manager** | [GDM](https://wiki.archlinux.org/title/GDM) |
 | **Window Manager/Compositor** | [Niri](https://niri-wm.github.io/niri/) (Wayland) |
 | **Desktop** | [Dank Material Shell](https://danklinux.com/) |

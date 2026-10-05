@@ -16,13 +16,12 @@ in
     imports = [
         inputs.dms.homeModules.dank-material-shell
         inputs.dms.homeModules.niri
-        inputs.dms-plugins.modules.default
+        inputs.dms-plugins.nixosModules.default
         inputs.danksearch.homeModules.dsearch
     ];
 
     programs.dank-material-shell = {
         enable = true;
-        dgop.package = pkgs-unstable.dgop;
         quickshell.package = pkgs-unstable.quickshell;
 
         niri = {

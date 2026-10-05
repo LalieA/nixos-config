@@ -31,7 +31,7 @@ let
         tesseract4
 
         # VPN
-        protonvpn-gui
+        proton-vpn
     ];
 in {
     home.packages = desktopPackages;

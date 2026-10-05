@@ -15,7 +15,7 @@
             defaultSession = lib.mkForce "niri";
             gdm = {
                 enable = true;
-                wayland = true;
+                settings.daemon.WaylandEnable = true;
             };
         };
         xserver = {
@@ -41,7 +41,7 @@
         xdg-desktop-portal-gnome
 
         # xrdb (configure xorg apps)
-        xorg.xrdb
+        xrdb
 
         # xwayland
         xwayland-satellite
