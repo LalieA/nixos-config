@@ -41,13 +41,18 @@
     networking.firewall.allowedUDPPorts = [ 67 68 ];
     networking = {
         enableIPv6 = false; # disable IPv6
-        interfaces.enp0s20f0u4u3 = {
-            useDHCP = false;
-            ipv4.addresses = [{
-                address = "50.50.50.1";
-                prefixLength = 24;
-            }];
-        };
+        # to act as a dhcp server binding to interface:
+        #       nmcli con modify enp0s20f0u4u3 ipv4.method shared
+        #       nmcli con modify enp0s20f0u4u3 ipv4.shared-dhcp-range 50.50.50.2,50.50.50.10
+
+        # interfaces.enp0s20f0u4u3 = {
+        #     useDHCP = false;
+        #     # ipv4.addresses = [{
+        #     #     address = "50.50.50.1";
+        #     #     prefixLength = 24;
+        #     # }];
+        # };
+
         networkmanager = {
             enable = true;
             wifi.scanRandMacAddress = true;

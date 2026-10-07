@@ -42,21 +42,7 @@
             };
 
             # Outputs
-            outputs = {
-                "eDP-1" = {
-                    position = {
-                        x = 0;
-                        y = 0;
-                    };
-                    focus-at-startup = true;
-                };
-                "HDMI-A-1" = {
-                    position = {
-                        x = 0;
-                        y = -1080;
-                    };
-                };
-            };
+            outputs = { };
 
             # Overview
             overview = {
